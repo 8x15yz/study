@@ -141,9 +141,11 @@ train=train.drop(train[(train['BsmtUnfSF']<1500) & (train['SalePrice']>700000)].
 train과 test 셋에 동일한 feature engineering을 적용해주기 위해 입시로 합치기
 
 ```python
+#t_plus 시작 = 임시로 concat 하는
 train=train[list(test)]
-t_plus_t=pd.concat((train, test), axis=0)
-print(t_plus_t.shape)
+t_plus=pd.concat((train, test), axis=0)
+index_t_plus = t_plus.index 
+print(t_plus.shape)
 ```
 
 ```python
@@ -151,7 +153,7 @@ print(t_plus_t.shape)
 ```
 
 ```python
-t_plus_t.head()
+t_plus.head()
 ```
 
 (헤드 결과 이미지 게시)
@@ -161,6 +163,8 @@ t_plus_t.head()
 
 
 #### 결측치 삭제/대체 + 문자형자료 가중치 할당
+
+##### 결측치 삭제
 
 `.isna().sum()`  사용하고 (isna나 isnull이나 이름만 다르지 기능은 동일함) `.fillna()` 로 값을 채워주기 
 
@@ -173,8 +177,8 @@ https://workingwithpython.com/howtohandlemissingvaluewithpython/
 절반 이상이 결측치인 인덱스는 삭제하고  나머지는 평균값으로 fillna하려고 함
 
 ```python
-check_null = t_plus_t.isna().sum() / len(t_plus_t)
-check_null[check_null >= 0.5]
+check_null = t_plus.isna().sum() / len(t_plus)
+check_null[check_null >= 0.4]
 ```
 
 
@@ -183,27 +187,97 @@ check_null[check_null >= 0.5]
 
 그리고 check_null 리스트에서 비율이 0.5 이상인 칼럼들을 지금 리턴한거임 => `4 칼럼이 나옴 `
 
++) 다른값도 대입해보니까 0.48도 있느넫 이것도 포함시키겠음
+
 ```결과
 Alley          0.932075
 PoolQC         0.997256
 Fence          0.804460
 MiscFeature    0.963979
+FireplaceQu    0.487136
 ```
 
 - **Alley**: Type of alley access
 - **PoolQC**: Pool quality
 - **Fence**: Fence quality
 - **MiscFeature**: Miscellaneous feature not covered in other categories
+- **FireplaceQu**: Fireplace quality
 
 
 
 ```python
-remove_cols = check_null[check_null >= 0.5].keys()
-t_plus_t = t_plus_t.drop(remove_cols, axis=1)
-t_plus_t.head()
+remove_cols = check_null[check_null >= 0.4].keys()
+t_plus = t_plus.drop(remove_cols, axis=1)
+t_plus.head()
 ```
 
 네개 항목 삭제한 모습 이미지 첨부
 
 
 
+##### 가중치 할당
+
+숫자가 아닌 자료형들을 obj_t_plus 변수에 할당하고 구분하는 코드
+
+```python
+obj_t_plus = t_plus.select_dtypes(include='object')
+num_t_plus = t_plus.select_dtypes(exclude='object')
+print('Object type columns:\n',obj_t_plus.columns)
+print('---------------------------------------------------------------------------------')
+print('Numeric type columns:\n',num_t_plus.columns)
+```
+
+```결과
+Object type columns:
+ Index(['MSZoning', 'Street', 'LotShape', 'LandContour', 'Utilities',
+       'LotConfig', 'LandSlope', 'Neighborhood', 'Condition1', 'Condition2',
+       'BldgType', 'HouseStyle', 'RoofStyle', 'RoofMatl', 'Exterior1st',
+       'Exterior2nd', 'MasVnrType', 'ExterQual', 'ExterCond', 'Foundation',
+       'BsmtQual', 'BsmtCond', 'BsmtExposure', 'BsmtFinType1', 'BsmtFinType2',
+       'Heating', 'HeatingQC', 'CentralAir', 'Electrical', 'KitchenQual',
+       'Functional', 'GarageType', 'GarageFinish', 'GarageQual', 'GarageCond',
+       'PavedDrive', 'SaleType', 'SaleCondition'],
+      dtype='object')
+---------------------------------------------------------------------------------
+Numeric type columns:
+ Index(['MSSubClass', 'LotFrontage', 'LotArea', 'OverallQual', 'OverallCond',
+       'YearBuilt', 'YearRemodAdd', 'MasVnrArea', 'BsmtFinSF1', 'BsmtFinSF2',
+       'BsmtUnfSF', 'TotalBsmtSF', '1stFlrSF', '2ndFlrSF', 'LowQualFinSF',
+       'GrLivArea', 'BsmtFullBath', 'BsmtHalfBath', 'FullBath', 'HalfBath',
+       'BedroomAbvGr', 'KitchenAbvGr', 'TotRmsAbvGrd', 'Fireplaces',
+       'GarageYrBlt', 'GarageCars', 'GarageArea', 'WoodDeckSF', 'OpenPorchSF',
+       'EnclosedPorch', '3SsnPorch', 'ScreenPorch', 'PoolArea', 'MiscVal',
+       'MoSold', 'YrSold'],
+      dtype='object')
+```
+
+
+
+obj로 구분한 값들에 대해 one-hot-encoding을 적용하기 위해 **pd.get_dummies()** 사용
+
+(one-hot-encoding이란? https://wikidocs.net/22647)
+
+(범주 데이터를 숫자로 인코딩하기 https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=youji4ever&logNo=221698612004)
+
+```python
+dummy_t_plus = pd.get_dummies(obj_t_plus, drop_first=True)
+dummy_t_plus.index = index_t_plus
+dummy_t_plus.head()
+```
+
+
+
+
+
+##### 결측치 대체 https://wikidocs.net/83943
+
+null값들을 그 칼럼의 평균으로 대체해줄것 (sklearn 사용)
+
+```python
+```
+
+
+
+
+
+##### 
