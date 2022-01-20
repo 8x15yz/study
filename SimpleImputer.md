@@ -1,1 +1,1 @@
-![0121_2](C:\Users\punc3\OneDrive\바탕 화면\github_\data_analysis_club\zy51x8\0121_2.jpeg)
+![png](0121_2.png)
