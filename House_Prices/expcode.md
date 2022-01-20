@@ -1,3 +1,9 @@
+자세한 설명 블로그에: 
+
+https://08hyun15.tistory.com/entry/kaggle-%EB%B3%B4%EC%8A%A4%ED%84%B4-%EC%A7%91%EA%B0%92-%EC%98%88%EC%B8%A1-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%A0%84%EC%B2%98%EB%A6%AC-%EB%B6%80
+
+
+
 #### 모듈 import + 데이터 불러오기
 
 모듈 :  `pandas`  `numpy`  `scipy.stats.norm`  `matpoltlib`  `seaboen`
@@ -35,7 +41,11 @@ test 파일 인덱스가 79개
 
 NaN값이나 str 자료형들은 이따가 결측치 제거하는 작업이나 가중치 할당이 필요함
 
+ 
 
+ 
+
+ 
 
 
 
@@ -59,7 +69,11 @@ sns.distplot(np.log(data['SalePrice']), fit=norm)
 
 (이미지 넣기)
 
+ 
 
+ 
+
+ 
 
 
 
@@ -138,11 +152,19 @@ train=train.drop(train[(train['BsmtUnfSF']<1500) & (train['SalePrice']>700000)].
 
 ####  데이터 처리 준비 : `train` + `test`  concat 하기
 
-train과 test 셋에 동일한 feature engineering을 적용해주기 위해 입시로 합치기
+train과 test 셋에 동일한 feature engineering을 적용해주기 위해 임시로 합치기
+
+```python
+from sklearn.model_selection import train_test_split
+train_y_label = train['SalePrice'] 	# target 값을 미리 분리하였음.
+ytrain=train['SalePrice']
+train.drop(['SalePrice'], axis=1, inplace=True)
+```
+
+
 
 ```python
 #t_plus 시작 = 임시로 concat 하는
-train=train[list(test)]
 t_plus=pd.concat((train, test), axis=0)
 index_t_plus = t_plus.index 
 print(t_plus.shape)
@@ -158,13 +180,17 @@ t_plus.head()
 
 (헤드 결과 이미지 게시)
 
+  
 
+  
+
+ 
 
 
 
 #### 결측치 삭제/대체 + 문자형자료 가중치 할당
 
-##### 결측치 삭제
+##### 결측치 비율이 높은 칼럼 삭제
 
 `.isna().sum()`  사용하고 (isna나 isnull이나 이름만 다르지 기능은 동일함) `.fillna()` 로 값을 채워주기 
 
@@ -187,7 +213,7 @@ check_null[check_null >= 0.4]
 
 그리고 check_null 리스트에서 비율이 0.5 이상인 칼럼들을 지금 리턴한거임 => `4 칼럼이 나옴 `
 
-+) 다른값도 대입해보니까 0.48도 있느넫 이것도 포함시키겠음
++) 다른값도 대입해보니까 0.48도 있는데 이것도 포함시키겠음
 
 ```결과
 Alley          0.932075
@@ -271,13 +297,35 @@ dummy_t_plus.head()
 
 ##### 결측치 대체 https://wikidocs.net/83943
 
+https://blog.naver.com/PostView.naver?blogId=gdpresent&logNo=221724013567&redirect=Dlog&widgetTypeCall=true&directAccess=false
+
 null값들을 그 칼럼의 평균으로 대체해줄것 (sklearn 사용)
 
 ```python
+from sklearn.impute import SimpleImputer
+imputer = SimpleImputer()
+imp_mean = SimpleImputer(missing_values = np.nan, strategy= 'mean')
+imp_mean.fit(num_t_plus)
 ```
 
+잘 돌아갔다는 뜻으로  `SimpleImputer()`  결과로 반환
 
+```python
+imp_mean.transform(num_t_plus)
+```
 
-
-
-##### 
+```
+array([[6.0000e+01, 6.5000e+01, 8.4500e+03, ..., 0.0000e+00, 2.0000e+00,
+        2.0080e+03],
+       [2.0000e+01, 8.0000e+01, 9.6000e+03, ..., 0.0000e+00, 5.0000e+00,
+        2.0070e+03],
+       [6.0000e+01, 6.8000e+01, 1.1250e+04, ..., 0.0000e+00, 9.0000e+00,
+        2.0080e+03],
+       ...,
+       [2.0000e+01, 1.6000e+02, 2.0000e+04, ..., 0.0000e+00, 9.0000e+00,
+        2.0060e+03],
+       [8.5000e+01, 6.2000e+01, 1.0441e+04, ..., 7.0000e+02, 7.0000e+00,
+        2.0060e+03],
+       [6.0000e+01, 7.4000e+01, 9.6270e+03, ..., 0.0000e+00, 1.1000e+01,
+        2.0060e+03]])
+```
