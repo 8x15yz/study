@@ -57,7 +57,9 @@ train 파일에서 타겟 요인인 SalePrice값들을 히스토그램으로 표
 sns.distplot(data['SalePrice'], fit=norm)
 ```
 
-(이미지 넣기)
+![2102](https://user-images.githubusercontent.com/87743473/150447337-8a7baf12-43f4-46d1-a3f8-5413c393ab8b.png)
+
+
 
 데이터가 Right Skewed 됐으므로 정규분포에 가깝게 보일수 있도록 log적용하여 보정:
 
@@ -67,7 +69,7 @@ sns.distplot(data['SalePrice'], fit=norm)
 sns.distplot(np.log(data['SalePrice']), fit=norm)
 ```
 
-(이미지 넣기)
+![2103](https://user-images.githubusercontent.com/87743473/150447339-9425ee33-3ca2-4898-bc56-8e0c91d30230.png)
 
  
 
@@ -97,7 +99,7 @@ fig.set_size_inches(20,20)
 sns.heatmap(top_corr, annot=True, ax=ax_1)
 ```
 
-(이미지 넣기)
+![2104](https://user-images.githubusercontent.com/87743473/150447317-8c653e8c-9d5c-4ee6-bbf9-13ddc22866e3.png)
 
 
 
@@ -112,7 +114,7 @@ sns.regplot(data['인덱스이름'], data['SalePrice'])
 ```
 
 - **OverallQual**: Overall material and finish quality
-- (각각 이미지 첨부)
+- ![2105](https://user-images.githubusercontent.com/87743473/150447320-ae752762-70f1-4bc1-8c8e-eba3220dd648.png)
 - **GrLivArea**: Above grade (ground) living area square feet
 - **GarageCars**: Size of garage in car capacity
 - **GarageArea**: Size of garage in square feet
@@ -146,7 +148,7 @@ train=train.drop(train[(train['MasVnrArea']<1400) & (train['SalePrice']>650000)]
 train=train.drop(train[(train['BsmtUnfSF']<1500) & (train['SalePrice']>700000)].index) 
 ```
 
-(바뀐 이미지 첨부)
+
 
 
 
@@ -178,7 +180,7 @@ print(t_plus.shape)
 t_plus.head()
 ```
 
-(헤드 결과 이미지 게시)
+![2106](https://user-images.githubusercontent.com/87743473/150447321-40ca33b7-ef9a-4962-9ba5-65450c611254.png)
 
   
 
@@ -237,7 +239,7 @@ t_plus = t_plus.drop(remove_cols, axis=1)
 t_plus.head()
 ```
 
-네개 항목 삭제한 모습 이미지 첨부
+![2107](https://user-images.githubusercontent.com/87743473/150447325-fb44e023-9724-407c-b598-e42804c6d3e2.png)
 
 
 
@@ -291,6 +293,10 @@ dummy_t_plus.index = index_t_plus
 dummy_t_plus.head()
 ```
 
+![2108](https://user-images.githubusercontent.com/87743473/150447328-cadb8c61-d728-4455-bb4f-5ffcdf72cb6d.png)
+
+
+
 
 
 
@@ -310,22 +316,10 @@ imp_mean.fit(num_t_plus)
 
 잘 돌아갔다는 뜻으로  `SimpleImputer()`  결과로 반환
 
+![2109](https://user-images.githubusercontent.com/87743473/150447330-b200fbe2-e3e0-4ef4-9614-efdfefb4e242.png)
+
 ```python
 imp_mean.transform(num_t_plus)
 ```
 
-```
-array([[6.0000e+01, 6.5000e+01, 8.4500e+03, ..., 0.0000e+00, 2.0000e+00,
-        2.0080e+03],
-       [2.0000e+01, 8.0000e+01, 9.6000e+03, ..., 0.0000e+00, 5.0000e+00,
-        2.0070e+03],
-       [6.0000e+01, 6.8000e+01, 1.1250e+04, ..., 0.0000e+00, 9.0000e+00,
-        2.0080e+03],
-       ...,
-       [2.0000e+01, 1.6000e+02, 2.0000e+04, ..., 0.0000e+00, 9.0000e+00,
-        2.0060e+03],
-       [8.5000e+01, 6.2000e+01, 1.0441e+04, ..., 7.0000e+02, 7.0000e+00,
-        2.0060e+03],
-       [6.0000e+01, 7.4000e+01, 9.6270e+03, ..., 0.0000e+00, 1.1000e+01,
-        2.0060e+03]])
-```
+![2110](https://user-images.githubusercontent.com/87743473/150447333-e91cac20-44f1-4f0d-a08d-8861768b6658.png)
