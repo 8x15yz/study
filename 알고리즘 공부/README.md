@@ -8,19 +8,20 @@
 
 ```python
 # DP
-1. 피보나치 재귀로 구현하기 #(0307 updated!)
-2. 피보나치 DP로 구현하기 #(0307 updated!)
-2.1. DP 복습 - 0221 hws (swea 2005) #(0308 updated!)
+1.1. 피보나치 재귀로 구현하기 #(0307 updated!)
+1.2. 피보나치 DP로 구현하기 #(0307 updated!)
+1.3. DP 복습 - 0221 hws (swea 2005) #(0308 updated!)
 
 # DFS
-3. DFS 구현하기 #(0309 updated!)
-3.1. swea 4871 그래프경로 풀이 #(0309 updated!)
-3.2. swea 1219 길찾기 풀이 #(0309 updated!)
+2. DFS 구현하기 #(0309 updated!)
+2.1. swea 4871 그래프경로 풀이 #(0309 updated!)
+2.2. swea 1219 길찾기 풀이 #(0309 updated!)
 
 # 백트래킹
-4. Nqueen 구현
-5. powerset
-6. 순열
+3.1. swea 4875 미로 풀이 #(0309 updated!)
+3.2. swea 2806 Nqueen 풀이 
+4. powerset
+5. 순열
 ```
 
 `개념공부`
