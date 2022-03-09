@@ -27,7 +27,7 @@ for i in range(N-2):
 print(fib)
 ```
 
-# 2.1.  DP 복습 - 0221 hws (swea 2005)
+# 2.1.  DP 문제 - swea 2005 파스칼 삼각형
 
 `v(0308 updated!)`
 
@@ -73,7 +73,7 @@ for tc in range(1, T+1):
          stack.pop()
  ```
 
-# 3.1. swea 4871 그래프경로 풀이 
+# 3.1. swea 4871 그래프경로 
 
 `v(0309 updated!)`
 
@@ -113,7 +113,7 @@ for tc in range(1, T+1):
     print('#{} {}'.format(tc, ans))
 ```
 
-# 3.2. swea 1219 길찾기 풀이
+# 3.2. swea 1219 길찾기
 
 `v(0309 updated!)`
 
