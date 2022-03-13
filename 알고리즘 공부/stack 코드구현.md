@@ -206,3 +206,126 @@ for tc in range(1, T+1):
 ```python
 ```
 
+# 4. powerset 구하기
+
+## 4.1. bitwise
+
+`v(0313 updated!)`
+
+https://08hyun15.tistory.com/entry/powerset-%EA%B5%AC%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95-2%EA%B0%80%EC%A7%80-%EB%B9%84%ED%8A%B8%EC%97%B0%EC%82%B0%EC%9E%90DFS 
+
+내 블로그에 설명 올림
+
+```python 
+arr = [1, 2, 3]
+n = len(arr)
+for i in range(1 << n):            
+    track = []
+    for j in range(n):
+        print(bin(i))
+        if i & (1 << j):
+            track.append(j)
+    print(track)
+```
+
+## 4.2. DFS
+
+`v(0313 updated!)`
+
+```python 
+def powerset(i, N, K):
+    global cnt                    # 전역변수 사용해서 함수 호출횟수 셈
+    cnt += 1
+    if i == N:
+        sumsubset = 0             # 부분집합의 합을 만들기 위해 변수를 선언
+        for j in range(N):
+            if bit[j]:
+                sumsubset+= a[j]  # 부분집합 합 구하기
+        if sumsubset == K:        # 이때 합이 K와 동일하면
+            for j in range(N):
+                if bit[j]:        # 부분집합 원소를 출력하기
+                    print(a[j], end=' ')
+            print()
+    else:
+        bit[i] = 1                # DFS 탐색과정 코드
+        powerset(i+1, N, K)
+        bit[i] = 0
+        powerset(i + 1, N, K)
+    return
+
+a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+bit = [0]*10
+cnt = 0
+powerset(0, 10, 10)
+print(cnt)
+```
+
+## 4.3. backtraking
+
+`v(0313 updated!)`
+
+```python 
+# 백트래킹으로 탐색 횟수 줄이기 (가지치기)
+def powerset(i, N, s, K):
+    global cnt
+    cnt += 1
+    if s == K:               # 부분집합 합이 K가 된다면 원소 출력하기
+        for j in range(N):
+            if bit[j]:
+                print(a[j], end=' ')
+        print()
+    elif i == N:             # 더이상 고려할 원소가 없으면 멈춤
+        return
+    elif s > K:              # 부분집합 합이 K를 넘어도 멈춤
+        return
+    else:
+        bit[i] = 1
+        powerset(i+1, N, s+a[i], K)
+        bit[i] = 0
+        powerset(i + 1, N, s, K)
+    return
+
+
+
+a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+bit = [0] * 10
+cnt = 0
+powerset(0, 10, 0, 10)
+print(cnt)
+```
+
+```python
+# 백트래킹 요소 하나 더 추가 : 남은 원소 rs를 다 더할때 K보다 작으면 멈춤
+def powerset(i, N, s, K, rs):
+    global cnt
+    cnt += 1
+    if s == K:
+        for j in range(N):
+            if bit[j]:
+                print(a[j], end=' ')
+        print()
+    elif i == N:
+        return
+    elif s > K:
+        return
+    elif s+rs < K:
+        return
+    else:
+        bit[i] = 1
+        powerset(i+1, N, s+a[i], K, rs-a[i])
+        bit[i] = 0
+        powerset(i + 1, N, s, K, rs-a[i])
+    return
+
+
+
+a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+bit = [0] * 10
+cnt = 0
+powerset(0, 10, 0, 55, sum(a))
+print(cnt)
+```
+
+`comment`  : 물론 가지치기 중요하지만 일단 우리 수준에서는 모든 경우를 다 만들어 보는게 중요함
+
+DFS 먼저 잘 익히도록 하자..

@@ -20,7 +20,12 @@
 # 백트래킹
 3.1. swea 4875 미로 풀이 #(0309 updated!)
 3.2. swea 2806 Nqueen 풀이 
-4. powerset
+
+# powerset 구하기
+4.1. bitwise #(0313 updated!)
+4.2. DFS #(0313 updated!)
+4.3. backtraking #(0313 updated!)
+
 5. 순열
 ```
 
