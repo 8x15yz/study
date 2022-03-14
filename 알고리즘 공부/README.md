@@ -26,7 +26,10 @@
 4.2. DFS #(0313 updated!)
 4.3. backtraking #(0313 updated!)
 
-5. 순열
+# permutation 구하기
+3. 기본구조 (재귀함수) #(0314 updated!)
+3.1. 코드1 #(0314 updated!)
+3.2. 코드2 #(0314 updated!)
 ```
 
 `개념공부`
