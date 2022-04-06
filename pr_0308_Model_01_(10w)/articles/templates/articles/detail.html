@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>상세 페잊지</h1>
+<div class="col-8">
+    <div class="card">
+        <div class="card-body">
+            <p>{{article.pk}}</p>
+            <p>{{article.title}}</p>
+            <p>{{article.content}}</p>
+            <p>{{article.creates_at}}</p>
+            <p>{{article.updated_at}}</p>
+            <a href="{% url 'articles:edit' article.pk%}" class="btn btn-success">수정하기</a>
+            <a href="{% url 'articles:delete' article.pk%}" class="btn btn-danger">삭제하기</a>
+        </div>
+    </div>
+</div>
+{% endblock content %}

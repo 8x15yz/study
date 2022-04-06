@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>index</h1>
+
+{% comment %} {% for article in articles %}
+<p>
+    {{article}}
+</p>
+
+{% endfor %} {% endcomment %}
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+    {% for article in articles %}
+      <div class="col">
+        <div class="card">
+          <a href="{% url 'articles:detail' article.pk%}">
+            <img src="https://picsum.photos/500" class="card-img-top" alt="예시 이미지">
+            <div class="card-body">
+            <h5 class="card-title">{{article.pk}}. {{article.title}}</h5>
+            <p class="card-text">{{article.content}}</p>
+            </div>
+          </a>
+          
+        </div>
+      </div>
+    {% endfor %}    
+</div>
+
+{% endblock content %}
