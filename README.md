@@ -1,6 +1,6 @@
 # 목차
 
-#### 장고 기본 : 상속 + throw/catch 
+### 장고 기본 : 상속 + throw/catch 
 
 `<dir>`
 
@@ -18,7 +18,7 @@ pr_0303_Form+URL_(9w)
 
 
 
-#### CRUD 정리
+### CRUD 정리
 
 `<dir>`
 
@@ -37,7 +37,7 @@ ssafy_pjt05_django_(220311)
 
 
 
-#### ModelForm 
+### ModelForm 
 
 `<dir>`
 
