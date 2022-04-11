@@ -1,4 +1,4 @@
-# Authentication System (0411 강의)
+# Authentication System (0411 강의) 오전
 
 ## 0. 목차
 
@@ -12,6 +12,7 @@
    3. 인증된 사용자한테만 "게시글 작성 링크"를 볼 수 있도록 처리하기
    4. articles/views.py 수정하기
 6. next 파라미터 다루기
+6. delete 동작에서 로그인에 성공할시 405 오류 해결
 
 ## 1. 필수 구성은 이미 settings.py에 포함되어 있음
 
