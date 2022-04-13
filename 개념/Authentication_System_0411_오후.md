@@ -127,6 +127,15 @@ def update(request):
     return render(request, 'accounts/update.html', context)
 ```
 
+####  * form = UserChangeForm(instance=request.user)
+
+```
+유저정보를 가져오는거에 이제 로그인을 해야된다는 강제성이 있어애되는데 두가지 방법 정도가 있었어
+
+1. is authenticated
+2. 데코레이터 사용
+```
+
 accounts/update.py 
 
 ```
@@ -306,3 +315,10 @@ from django.contrib.auth import update_session_auth_hash 불러오고
 ## 5. 데코레이터 정리해주기 !!!
 
 이거는 내일 점심에 하도록 하자.  ..
+
+
+
+
+
+url은 있는데 메서드는 못써 405
+url 메서드는 좋은데 보여줄게 없어 404
