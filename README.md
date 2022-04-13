@@ -52,6 +52,17 @@ Authentication System
 
 개념/ Authentication_System_0411_오후
 
+## 1:N database
+
+`<dir>`
+
+1n_database
+
+`<명세서 + 필기>`
+
+개념/ 1n_database_0413_오전
+
+개념/ 1n_database_0413_오후
 
 
-`<명세서 + 필기 파일>`
+

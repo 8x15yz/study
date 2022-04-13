@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>index page</h1>
+
+
+{% for article in articles %}
+<hr>
+{{ article.pk }} - {{ article.title }}
+<div>
+    {{ article.content }}
+</div>
+<a href="{% url 'articles:detail' article.pk%}"><button>자세히?</button></a>
+{% endfor %}
+<hr>
+{% endblock content %}
