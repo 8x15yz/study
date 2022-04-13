@@ -18,3 +18,7 @@ authentication system 업로드함
 ### 0413/  
 
 1:N 데이터베이스 관계 업로드함
+
+- 제너레이터 + authentication system 다시좀 하자
+- 내일은 저거 아예처음부터 프젝 만들어보기
+
