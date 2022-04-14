@@ -248,13 +248,107 @@ action 란을 비워주기 =>  login으로 요청을 보내는게 아니라 next
 
 ## 회원가입 폼 만들기 (내장폼 불러오기)
 
+##### accounts > views.py
+
+```
+1. from django.contrib.auth.forms 에 UserCreationForm 추가
+```
+
 ## urls + views + html 작성
 
+##### accounts > urls.py
+
+```
+path('signup/', views.signup, name="signup"),
+```
+
+<hr>signup form : views.py
+
+1. GET 메서드로 요청을 받아올때 => signup폼 페이지를 렌더해주는 작업
+2. POST 메서드로 요청을 받아올때 => 신규 회원정보를 저장하는 작업
+
+<hr>=> 1번 작업부터 진행할 것임
+
+### 1. signup폼 페이지를 렌더
+
+##### accounts > views.py 완성코드
+
+```
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('articles:index')
+    else:
+        form = UserCreationForm()
+    context = {
+        'form':form,
+    }
+    return render(request, 'accounts/signup.html', context)
+```
+
+##### accounts > signup.html
+
+```
+{% extends 'base.html' %}
+{% block content %}
+<form action="{% url 'accounts:signup' %}" method="POST">
+    {% csrf_token %}
+    {{form}}
+    <button>횐가입</button>
+</form>
+{% endblock content %}
+```
+
 ## 회원가입과 동시에 자동 로그인 기능 주기
+
+```
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            auth_login(request, user)
+            return redirect('articles:index')
+    else:
+        form = UserCreationForm()
+    context = {
+        'form':form,
+    }
+    return render(request, 'accounts/signup.html', context)
+```
+
+user = form.save()
+auth_login(request, user) 를 추가해주면 됨
+
+
 
 # 6. 회원탈퇴 작업 만들기
 
 ## urls + views + html 작성
+
+##### accounts > urls.py
+
+```
+path('delete/', views.delete, name="delete"),
+```
+
+##### accounts > views.py
+
+```
+def delete(request):
+    request.user.delete()
+    return redirect('articles:index')
+```
+
+##### base.html
+
+```
+<div><a href="{% url 'accounts:delete' %}"><button>횐탈퇴</button></a></div> 버튼 추가
+```
+
+
 
 # 7. 회원정보 수정 작업
 
