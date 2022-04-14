@@ -13,6 +13,7 @@
   <div class="container">
     <h3>hello, {{user}}</h3>
     <div><a href="{% url 'accounts:login' %}"><button>로그인</button></a></div>
+    <div><a href="{% url 'accounts:logout' %}"><button>로그아웃</button></a></div>
     {% block content %}
     {% endblock %}
   </div>

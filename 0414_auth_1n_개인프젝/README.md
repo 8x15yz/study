@@ -7,7 +7,7 @@
 ## 목차
 
 1. 유저작업 이전에 초기화 사항 `v`
-2. 로그인 작업 만들기
+2. 로그인 작업 만들기`v`
 3. 로그아웃 작업 만들기
 4. 기타작업
 5. 회원가입 작업 만들기
@@ -119,7 +119,7 @@ def login(request):
 {% endblock content %}
 ```
 
-### 2. POST 로 로그인정보 받아오기
+### //2. POST 로 로그인정보 받아오기
 
 ##### accounts > views.py > login > pass 부분에
 
@@ -133,7 +133,7 @@ form = AuthenticationForm(request, request.POST)
 
 ##### base.html에 로그인 아이디 출력 + 로그인버튼 출력
 
-accounts > login.html 마무리
+##### accounts > login.html 마무리
 
 form 태그를 만들고 `action 주소는 login`으로 + `메서드는post` + `csrf 토큰 `넣어주기
 
@@ -153,6 +153,25 @@ form 태그를 만들고 `action 주소는 login`으로 + `메서드는post` + `
 # 3. 로그아웃 작업 만들기
 
 ## urls + views + html 작성
+
+##### accounts > urls.py
+
+```
+path('logout/', views.logout, name="logout"),
+```
+
+##### accounts > views.py
+
+```
+1. from django.contrib.auth import logout as auth_logout 모듈 임포트
+2. def logout(request):
+    auth_logout(request)
+    return redirect('articles:index')
+```
+
+##### base.html에 로그아웃버튼 출력
+
+
 
 # 4. 기타작업
 
