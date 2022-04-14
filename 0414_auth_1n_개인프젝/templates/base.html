@@ -12,8 +12,13 @@
 <body>
   <div class="container">
     <h3>hello, {{user}}</h3>
-    <div><a href="{% url 'accounts:login' %}"><button>로그인</button></a></div>
+    {% if request.user.is_authenticated %}
+    <div><a href="{% url 'articles:create' %}"><button>[CREATE]</button></a></div>
     <div><a href="{% url 'accounts:logout' %}"><button>로그아웃</button></a></div>
+    {% else %}
+    <div><a href="{% url 'accounts:login' %}"><button>로그인</button></a></div>
+    {% endif %}
+    
     {% block content %}
     {% endblock %}
   </div>

@@ -9,7 +9,7 @@ def login(request):
         form = AuthenticationForm(request, request.POST) # 이게 무슨의미지?
         if form.is_valid():
             auth_login(request, form.get_user())
-            return redirect('articles:index')            # 여기까지 이부분 강의를 다시 들어야갰다
+            return redirect(request.GET.get('next') or 'articles:index')            # 여기까지 이부분 강의를 다시 들어야갰다
     else:
         forms = AuthenticationForm()
     context = {

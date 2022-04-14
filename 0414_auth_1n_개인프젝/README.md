@@ -8,8 +8,8 @@
 
 1. 유저작업 이전에 초기화 사항 `v`
 2. 로그인 작업 만들기`v`
-3. 로그아웃 작업 만들기
-4. 기타작업
+3. 로그아웃 작업 만들기`v`
+4. 기타작업`v`
 5. 회원가입 작업 만들기
 6. 회원탈퇴 작업 만들기
 7. 회원정보 수정 작업
@@ -175,11 +175,74 @@ path('logout/', views.logout, name="logout"),
 
 # 4. 기타작업
 
-## 로그인 + 로그아웃 작업 접근제한로직 만들기
+## 로그인 + 로그아웃 + create작업 접근제한로직 만들기
 
-## next 파라미터 다루기 
+##### base.html
 
-## delete 동작에서 로그인에 성공할시 405 오류
+if 태그를 사용하여 분기를 작성
+
+```
+{% if request.user.is_authenticated %}
+<div><a href="{% url 'articles:create' %}"><button>[CREATE]</button></a></div>
+<div><a href="{% url 'accounts:logout' %}"><button>로그아웃</button></a></div>
+{% else %}
+<div><a href="{% url 'accounts:login' %}"><button>로그인</button></a></div>
+{% endif %}
+```
+
+##### articles > views.py
+
+데코레이터를 사용하기 => 로그인 안하고 세가지 작업에 접근하려고 하면 login페이지를 리디렉트하고
+
+```
+1. from django.contrib.auth.decorators import login_required 모듈 임포트
+2. create/ delete/ update 세가지에 대해 @login_required 붙여주기
+```
+
+리디렉트 하면서 주소창에 `?next=` 문자열과 함께 주소가 나옴:
+
+## //next 파라미터 다루기 (views.py + login.html 변경)
+
+원래 가려고 했던 주소를 로그인하면 보내준다는 뜻
+
+이제 이 문자열을 views\.py에서 다뤄줘야 위의 문장처럼 실행될 수 있음
+
+##### accounts > views.py > login 함수
+
+리디렉트할때 `request.GET.get('next') or`  문장을 추가해주기
+
+```
+return redirect(request.GET.get('next') or 'articles:index')
+```
+
+or의 역할: nest가 있다면 그 주소로 리디렉트, 아니면 index로 리디렉트
+
+##### accounts > login.html
+
+action 란을 비워주기 =>  login으로 요청을 보내는게 아니라 next 쿼리에서 명시하는 주소로 요청을 보내고 싶은 것이기 때문에 action을 따로 지정하지 않고, next 쿼리가 써져있는 주소창에 작성되어있는 주소의 urls로 요청을 보내려고 하는 것이다
+
+## //delete 동작에서 로그인에 성공할시 405 오류
+
+데코레이터 조합 오류 => required_POST, login_required 데코레이터를 같이 쓰면 
+
+요청할 때 오류가 생김:
+
+여기서 우리는 login_required를 is_authenticated로 바꿔주면서 방지할수 있었음
+
+##### articles > views.py > delete 함수
+
+```
+1. from django.views.decorators.http import require_POST 임포트
+2. delete 함수 위에 @require_POST 작성
+3. def detail(request, pk):
+    article = get_object_or_404(Article, pk=pk)
+    context = {
+        'article': article,
+    }
+    return render(request, 'articles/detail.html', context)
+```
+
+
 
 # 5. 회원가입 작업 만들기
 
