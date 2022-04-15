@@ -16,6 +16,7 @@
     <div><a href="{% url 'articles:create' %}"><button>[CREATE]</button></a></div>
     <div><a href="{% url 'accounts:logout' %}"><button>로그아웃</button></a></div>
     <div><a href="{% url 'accounts:delete' %}"><button>횐탈퇴</button></a></div>
+    <div><a href="{% url 'accounts:update' %}"><button>횐정보수정</button></a></div>
     {% else %}
     <div><a href="{% url 'accounts:login' %}"><button>로그인</button></a></div>
     <div><a href="{% url 'accounts:signup' %}"><button>횐가입</button></a></div>

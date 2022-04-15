@@ -10,11 +10,11 @@
 2. 로그인 작업 만들기`v`
 3. 로그아웃 작업 만들기`v`
 4. 기타작업`v`
-5. 회원가입 작업 만들기
-6. 회원탈퇴 작업 만들기
-7. 회원정보 수정 작업
-8. 비밀번호 수정작업
-9. 중간에 데코레이터 정리
+5. 회원가입 작업 만들기`v`
+6. 회원탈퇴 작업 만들기`v`
+7. 회원정보 수정 작업`v`
+8. 비밀번호 수정작업`v`
+9. 중간에 데코레이터 정리`v`
 10. 게시글에 댓글 사용할수있도록 (Article : Comment = 1 : N 관계 구현)
 11. 여러 유저들이 각각 글을 쓰는걸 연결 (User : Article = 1 : N)
 12. 여러 유저들이 각각 댓글을 쓰는걸 연결 (User : Comment = 1 : N)
@@ -348,33 +348,231 @@ def delete(request):
 <div><a href="{% url 'accounts:delete' %}"><button>횐탈퇴</button></a></div> 버튼 추가
 ```
 
+#### futher logic : 데코레이터+is_auth~ 사용해서 로그인한 사용자만 횐탈퇴할수있도록 하는 코드
+
+##### accounts > views.py
+
+```
+@require_POST
+def delete(request):
+    if request.user.is_authenticated:
+        request.user.delete()
+        auth_logout(request) # 요 로직은 로그아웃하면서 세션 지우려고 추가한 코드임
+    return redirect('articles:index')
+```
+
 
 
 # 7. 회원정보 수정 작업
 
 ## 회원정보 수정  폼 만들기 (내장폼 불러오기)
 
+##### accounts > views.py
+
+```
+from django.contrib.auth.forms 에 UserChangeForm 모듈 불러오기
+```
+
 ## 베이스코드 작성
+
+##### accounts > urls.py
+
+```
+path('update/', views.update, name="update"),
+```
+
+##### accounts > views.py
+
+기본틀 로직으로 먼저 만들어놓기
+
+```
+def update(request):
+    if request.method == 'POST':
+        pass
+    else:
+        form = UserChangeForm(instance=request.user)
+    context = {
+        'form':form,
+    }
+    return render(request, 'accounts/update.html', context)
+```
+
+##### accounts > update.html (생성)
+
+```
+{% extends 'base.html' %}   
+{% block content %}
+<form action="{% url 'accounts:update' %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button>제출</button>
+</form>
+{% endblock content %}
+```
+
+
 
 ## 유저정보를 가져오는거에 로그인을 해야된다는 강제성 부여
 
+이거는 : 데코레이터를 쓰거나 is_authenticated 쓰거나 둘 중 하나 하라는 소리임
+
+
+
 ## 회원정보 수정 페이지 정보 노출 제한 (UserchangeForm 커스텀)
 
+### 1. accounts > forms.py
+
+여기서 좀 설명이 필요한데 =>지금 우리는 내장폼을 사용하느라 모델 구조가 어떤지 알수없음 
+
+하지만 지금 우리는 페이지에서 노출하고싶은 필드만 골라서 커스텀할거니까 모델을 일단 임포트를 할수있음 : get_user_model
+
+ 필드는 장고 공식문서를 보면 알수있고 거기서 이제 이메일+ 이름 정도만 불러오려고 함
+
+```
+from django.contrib.auth.forms import UserChangeForm
+from django.contrib.auth import get_user_model
+
+class CustomUserChangeForm(UserChangeForm):
+    class Meta:
+        model = get_user_model()
+        fields = ('email', 'first_name', 'last_name',)
+```
+
+
+
 ## 커스텀 후 베이스코드 갈무리해주기 
+
+##### accounts > views.py
+
+UserChangeForm 삭제하고 CustomUserChangeForm으로 바꿔줄거셈
+
+update 함수에서도 UserChangeForm 지우고 CustomUserChangeForm으로 변경하기
+
+```
+from .forms import CustomUserChangeForm
+```
+
+나머지 update 함수 코드 채워주기
+
+```
+form = CustomUserChangeForm(request.POST, instance=request.user)
+if form.is_valid():
+      form.save()
+      return redirect('articles:index')
+```
+
+
+
+
 
 # 8. 비밀번호 수정작업
 
 ## 비밀번호 수정 폼 만들기 (내장폼 불러오기)
 
+PasswordChangeForm 사용할거임 views.py에 모듈 임포트하기
+
 ## 베이스코드 작성
 
-## 필수 위치인자 `user`누락이슈 해결해주기
+##### accounts > urls.py
+
+```
+path('password/', views.change_password, name="change_password"),
+```
+
+##### accounts > views.py
+
+기본틀 로직으로 먼저 만들어놓기
+
+```
+def change_password(request):
+    if request.method == 'POST':
+        pass
+    else:
+        form = PasswordChangeForm()
+    context = {
+        'form':form, 
+    }
+    return render(request, 'accounts/change_password.html', context)
+```
+
+accounts > change_password.html (생성)
+
+```
+{% extends 'base.html' %}
+{% block content %}
+<form action="{% url 'accounts:change_password' %}" method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <button>제출</button>
+</form>
+{% endblock content %}
+```
+
+
+
+
+
+## //필수 위치인자 `user`누락이슈 해결해주기
+
+메서드에 request.user를 쓰먄 해결되는데 왜 그런건지 모르겠음 => 강의를 듣자 ?
+
+```
+def change_password(request):
+    if request.method == 'POST':
+        pass
+    else:
+        form = PasswordChangeForm()
+    context = {
+        'form':form, 
+    }
+    return render(request, 'accounts/change_password.html', context)
+```
+
+
 
 ## 커스텀 후 베이스코드 갈무리해주기 
 
+```
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('articles:index')
+    else:
+        form = PasswordChangeForm(request.user)
+    context = {
+        'form':form, 
+    }
+    return render(request, 'accounts/change_password.html', context)
+```
+
+
+
 ## 비번 변경시 자동 로그아웃 이슈 해결해주기
 
+이러는 이유: 비번 변경하면 세션도 바뀜 - 그러다보니 기존의 세션과 매칭이 안돼서 서로 다른 유저로 판단이 된다는 뜻
+
+따라서 새로운 요청과 새로운 세션으로 업데이트 된 객체를 자동으로 가져오는 작업이 필요하다
+
+```
+from django.contrib.auth import update_session_auth_hash 모듈 불러오고
+
+user = form.save()
+update_session_auth_hash(request, user) 해시함수 넣어주는 것으로 변경
+```
+
+<hr>
+
+#### authentication 작업 끝 !!
+
+<hr>
+
 # 9. 중간에 데코레이터 정리
+
+ 데ㅌ코레이터는 강의를 들어야됨
+
+
 
 # 10. 게시글에 댓글 사용할수있도록 (Article : Comment = 1 : N 관계 구현)
 
