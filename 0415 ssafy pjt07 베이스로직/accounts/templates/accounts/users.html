@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>사용자 목록</h1>
+<hr>
+{% for user in user_data %}
+<div>{{ user.username }}</div>
+<hr>
+{% endfor %}
+
+{% endblock content %}
