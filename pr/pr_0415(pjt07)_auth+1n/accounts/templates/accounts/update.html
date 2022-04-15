@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form method = 'POST'>
+    {% csrf_token %}
+    {{ form.email }}
+    <button>저장</button>
+</form>
+{% endblock content %}

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class = "container mx-3">
+  <div class="row d-flex justify-content-center align-items-center h-100">
+    <div style="width:400px; border:1px solid green; float:left; margin-right:30px;">
+      <div class="p-3">
+      <h3 class = "fw-bold">{{ movie.title }}</h3>
+        <p>{{ movie.description }} .by {{movie.user}}</p>
+    
+      {% if request.user == movie.user %}
+      <a href= "{% url 'movies:update' movie.pk %}"><button class="btn btn-outline-success">EDIT</button></a>
+      <form action="{% url 'movies:delete' movie.pk %}" method="POST">
+          {% csrf_token %}
+          <button class="btn btn-outline-danger">DELETE</button>
+      </form>
+      {% endif %}
+    </div>
+  </div>
+    
+  <div style="width:400px; border:1px solid green; float:left;">
+    <div class="p-3">
+      <h3>댓글작성</h3>
+      {% if request.user.is_authenticated %}
+        <form action="{% url 'movies:comments_create' movie.pk%}" method="POST">
+          {% csrf_token %}
+          {{ commentform }}
+          <button>제출</button>
+        </form>
+      {% endif %}
+      <hr>
+      <h3>댓글 목록</h3>
+      <ul>
+        {% for comment in comments %}
+            <li>
+                {{ comment.content }} . by {{ comment.user }}
+                {% if request.user == comment.user %}
+                  <form action="{% url 'movies:comments_delete' movie.pk comment.pk%}" method="POST">
+                    {% csrf_token %}
+                    <input type="submit" value="delete">
+                  </form>
+                {% endif %}
+            </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+
