@@ -1,0 +1,5 @@
+1. SELECT * FROM examples;
+2. CREATE TABLE classmates (스키마)
+3. DROP TABLE classmates;
+4. INSERT INTO classmates (name, age) VALUES ('홍길동', 23);
+5. INSERT INTO classmates VALUES ('홍길동', 30, '서울');
