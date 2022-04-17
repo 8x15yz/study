@@ -8,6 +8,8 @@
 3. CRUD_Read
 3. CRUD_Delete
 3. CRUD_Update
+3. CRUD정리
+3. WHERE
 
 # 1. SQL 분류 (DDL/ DML/ DCL)
 
@@ -314,3 +316,178 @@ CREATE TABLE classmates (
 기존 테이블을 아예 새로운 테이블로 바꿔주는거임 ALTER를 사용합니다
 
 # 6. CRUD_Update
+
+```
+UPDATE 테이블명 SET 헤더명='바꿀값',.. WHERE 조건;
+```
+
+근데 이제 where에서 바꾸려고 할때 보통 pk기준으로 바꾸기는 해
+
+# 7. CRUD정리
+
+|      |  구분  |                       예시                        |
+| :--: | :----: | :-----------------------------------------------: |
+|  C   | INSERT | INSERT INTO 테이블명 (컬럼 , ..) VALUES (값, ..); |
+|  R   | SELECT |        SELECT * FROM 테이블명 WHERE 조건;         |
+|  U   | UPDATE |    UPDATE 테이블명 SET 컬럼=값, .. WHERE 조건;    |
+|  D   | DELETE |         DELETE FROM 테이블명 WHERE 조건;          |
+
+# 8. WHERE
+
+## 1. 작업 전 데이터 불러오기
+
+1. user 테이블 지정하기
+
+   ```
+   CREATE TABLE users (
+     first_name TEXT NOT NULL,
+     last_name TEXT NOT NULL,
+     age INTEGER NOT NULL,
+     country TEXT NOT NULL,
+     phone TEXT NOT NULL,
+     balance INTEGER NOT NULL
+   );
+   ```
+
+2. csv 임포트는 터미널에서 작업하기
+
+   ```
+   .mode csv
+   .import users.csv users
+   ```
+
+## 2. WHERE
+
+특정 조건으로 데이터를 조회함
+
+```
+SELECT * FROM users WHERE age = 30;
+```
+
+두개 이상의 조건을 활용해 조회
+
+```
+SELECT 컬럼명 FROM 테이블명 WHERE 조건1 AND 조건2;
+```
+
+```
+SELECT age, last_name FROM users WHERE age >= 30 AND last_name='김';
+```
+
+# 9. Aggregate Functions
+
+집계함수이고 
+
+여러 행으로부터 `하나의 결과` 를 반환하는 함수임 => `SELECT 구문에서만` 사용됨
+
+1. COUNT
+
+   그룹의 항목 수를 가져옴
+
+   ```
+   SELECT COUNT 컬럼 FROM 테이블명;
+   ```
+
+   그러면 NULL값도 셀까? 이거 확인해보기 => 아예 안되지 왠줄알아? 이거지금 눌값이 없다고 가정한 상태에서 진행하고 있는거니까 그냥 바보같은 질문일 뿐이지
+
+   <br>
+
+2. AVG/ MAX/ MIN/ SUM
+
+   ```
+   SELECT AGGR(컬럼) FROM 테이블이름;
+   ```
+
+   
+
+# 10. LIKE
+
+like 는 와일드카드 캐릭터와 함께 씀
+
+```
+SELECT * FROM 테이블명 WHERE 컬럼명 LIKE 와일드카드패턴;
+```
+
+```
+SELECT * FROM users WHERE age LIKE '2_';
+```
+
+
+
+와일드카드 캐릭터 2개 : `%` `_`
+
+1.  `%` 해당 자리에 문자열이 없을수도 있음
+2.  `_` 해당자리에 꼭 '하나의' 문자가 존재해야됨
+
+| 패턴 예시            | 의미                                          |
+| -------------------- | --------------------------------------------- |
+| 2%                   | 2로 시작하는 값                               |
+| %2                   | 2로 끝나는 값                                 |
+| %2%                  | 2가 들어가는 값                               |
+| _2%                  | 아무 값이 하나 있고 두 번째가 2로 시작하는 값 |
+| 1___                 | 1으로 시작하고 총 4자리인 값                  |
+| `2_%_%`    /  `2__%` | 2로 시작하고 적어도 3자리인 값                |
+
+
+
+# 11. ORDER_BY
+
+조회결과의 집합을 정렬 => SELECT 문에 추가해서 사용함
+
+키워드 두개
+
+1. ASC = 오름차순
+
+2. DESC = 내림차순
+
+```
+SELECT * FROM 테이블명 ORDER BY 컬럼 카워드;
+```
+
+# 12. GROUP BY
+
+문장에 WHERE 절이 포함된다면 반드시 WHERE절 뒤에 작성해야 됨
+
+```
+SELECT last_name, COUNT(*) FROM users GROUP BY last_name;
+```
+
+이건 지금 그거임 : 뭐냐면
+
+last name 컬럼 별로 각 요소들이 몇개씩 있는지를 조회하는 것인데
+
+GROUP BY 뒤에 오는 칼럼을 기준으로 이것을 정하고 
+
+SELECT last_name, COUNT(*) 이 부분은 지금 그 성씨가 제일 처음 나온 레코드의 lastname을 비춰주는 것
+
+```
+SELECT last_name, COUNT(*) AS name_count FROM users GROUP BY last_name;
+```
+
+ AS name_count 를 사용해서 헤더에 COUNT(*) 라고 나오는걸 name_count 라고 비춰줄 수 있음
+
+# 13. ALTER TABLE
+
+ALTER의 3가지 기능
+
+1. 테이블 이름 변경
+
+   ```
+   ALTER TABLE 기존 테이블명 RENAME TO 새로운 테이블명;
+   ```
+
+2. 테이블에 새로운 컬럼 추가
+
+   ```
+   ALTER TABLE 테이블명 ADD COLUMN 추가할 컬럼명 데이터타입 NOT NULL DEFAULT '기본값이 될 내용 추가';
+   ```
+
+   야 컬럼 타입은 변경못함 .. 처음 설정할때 잘 설정해주자
+
+3. 컬럼 이름 수정
+
+   ```
+   ALTER TABLE 테이블명 RENAME COLUMN 기존이름 TO 새로운 컬럼명;
+   ```
+
+   
