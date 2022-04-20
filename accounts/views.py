@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import User
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import get_user_model
+from .forms import CustomUserCreationForm
 
 # Create your views here.
 def userindex(request):
@@ -17,3 +18,15 @@ def profile(request, username):
         'username':username
     }
     return render(request, 'accounts/profile.html', context)
+
+def signup(request):
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        form.save()
+        return redirect('accounts:userindex')
+    else:
+        form = CustomUserCreationForm()
+    context = {
+        'form':form
+    }
+    return render(request, 'accounts/signup.html', context)
