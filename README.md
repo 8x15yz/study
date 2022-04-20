@@ -40,7 +40,7 @@ pr_0409_(pjt06) => crud+Media+statics 전부 적용한거
 
 pr_0407_modelform_crud_명세서
 
-## django Authentication System
+## 개념 > Authentication System
 
 `<dir>`
 
@@ -52,7 +52,7 @@ Authentication System
 
 개념/ Authentication_System_0411_오후
 
-## 1:N database
+## 개념 > 1:N database
 
 `<dir>`
 
@@ -63,6 +63,36 @@ Authentication System
 개념/ 1n_database_0413_오전
 
 개념/ 1n_database_0413_오후
+
+
+
+## 개념 > like+mtm
+
+`<dir>`
+
+like+mtm
+
+`<명세서 + 필기>`
+
+개념/ like+mtm_0418
+
+
+
+## 개념 > REST_API
+
+`<dir>`
+
+
+
+`<명세서 + 필기>`
+
+
+
+
+
+## DB_SQL_only dir/
+
+0314일에 공부했던 db01 공부 => SQL 문 공부한거 정리돼있음
 
 
 
