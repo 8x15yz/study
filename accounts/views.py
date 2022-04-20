@@ -1,4 +1,3 @@
-from xml.dom.expatbuilder import Rejecter
 from django.shortcuts import render
 from .models import User, Article, Comment
 from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
@@ -20,6 +19,7 @@ def userindex(request):
 def profile(request, username):
     user_name = get_object_or_404(User, username=username)
     user_pk = User.objects.filter(username=username).values('id').get().get('id')
+    print(user_pk, type(user_pk))
     user_articles = Article.objects.filter(user_id=user_pk)
     context = {
         'user_name':user_name,
