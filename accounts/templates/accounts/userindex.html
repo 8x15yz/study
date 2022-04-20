@@ -5,7 +5,7 @@
 <div>가입순으로 보여집니다. </div>
 
 {% for userindex in userindexs %}
-    <div>{{userindex}}</div>
+    <div>{{userindex}} <a href="{% url 'accounts:profile' userindex.username%}"><button>홈피</button></a></div>
 {% endfor %}
 
 {% endblock content %}

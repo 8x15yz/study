@@ -1,7 +1,13 @@
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
-from django.contrib.auth import get_user_model
+from .models import Article, Comment, User
+from django import forms
 
 class CustomUserCreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
-        model = get_user_model()
+        model = User
         fields = UserCreationForm.Meta.fields
+
+class ArticleCreationForm(forms.ModelForm):
+    class Meta:
+        model = Article
+        exclude = ('user', 'like_users')

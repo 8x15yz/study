@@ -1,4 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div>{{username}}의 프로필 페이지입니다?</div>
+    <hr>
+    <div>{{user_name}}의 프로필 페이지입니다?</div>
+    <hr>
+    {{user_pk}}
+    {% for user_article in user_articles %}
+        <div>{{ user_article.title }}</div>
+        <div> {{ user_article.content }}</div>
+        <div> {{ user_article.created_at }}</div>
+    {% endfor %}
 {% endblock content %}
