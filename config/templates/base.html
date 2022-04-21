@@ -15,6 +15,7 @@
         {% if request.user.is_authenticated %}
             <a href="{% url 'accounts:profile' user%}"><button>마이홈피</button></a>
             <a href="{% url 'accounts:logout' %}"><button>logout</button></a>
+            <a href="{% url 'accounts:create' %}"><button>create</button></a>
         {% else %}
         <a href="{% url 'accounts:login' %}"><button>login</button></a>
         <a href="{% url 'accounts:signup' %}"><button>signup</button></a>

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<hr>
+<div>{{article.title}}</div>
+<div>{{article.content}}</div>
+<div>{{article.created_at}}</div>
+<hr>
+<form action="{% url 'accounts:comments_create' article.user article.pk%}" method="POST">
+    {% csrf_token %}
+    <div>{{form}}</div>
+    <input type="submit" value="submit">
+</form>
+<hr>
+{% for comment in comments %}
+<div><a href="{% url 'accounts:profile' comment.user%}">{{comment.user}}</a>  {{comment.content}}</div>
+{% endfor %}
+{% endblock content %}

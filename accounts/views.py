@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .models import User, Article, Comment
 from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
 from django.contrib.auth import get_user_model
-from .forms import CustomUserCreationForm, ArticleCreationForm
+from .forms import CustomUserCreationForm, ArticleCreationForm, CommentCreationForm
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.forms import AuthenticationForm
@@ -19,8 +19,7 @@ def userindex(request):
 def profile(request, username):
     user_name = get_object_or_404(User, username=username)
     user_pk = User.objects.filter(username=username).values('id').get().get('id')
-    print(user_pk, type(user_pk))
-    user_articles = Article.objects.filter(user_id=user_pk)
+    user_articles = Article.objects.filter(user_id=user_pk).order_by('-pk')
     context = {
         'user_name':user_name,
         'user_articles':user_articles,
@@ -72,3 +71,24 @@ def create(request):
         'form':form
     }
     return render(request, 'accounts/create.html', context)
+
+def retrieve(request, username, p_pk):
+    article = get_object_or_404(Article, pk=p_pk)
+    form = CommentCreationForm()
+    comments = article.comment_set.all()
+    context = {
+        'article':article,
+        'form':form,
+        'comments':comments
+    }
+    return render(request, 'accounts/detailpage.html', context)
+
+def comments_create(request, username, p_pk):
+    article = Article.objects.get(pk=p_pk)
+    form = CommentCreationForm(request.POST)
+    if form.is_valid():
+        comment = form.save(commit=False)
+        comment.article = article
+        comment.user = request.user
+        comment.save()
+    return redirect('accounts:retrieve', username, p_pk)

@@ -8,5 +8,7 @@
         <div>{{ user_article.title }}</div>
         <div> {{ user_article.content }}</div>
         <div> {{ user_article.created_at }}</div>
+        <a href="{% url 'accounts:retrieve' user_name user_article.pk%}"><i class="far fa-comment"></i></a> {{user_article.comment_set.count}}
+        <hr>
     {% endfor %}
 {% endblock content %}
