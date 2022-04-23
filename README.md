@@ -1,5 +1,28 @@
 # 목차
 
+##### (0) django monostack CRUD
+
+	1. 장고 기본 : 상속 + throw/catch 
+	1. CRUD 정리
+	1. ModelForm + Media + statics
+
+##### (1) authentication system
+
+	1. Authentication System
+	1. 1:N database
+	1. like+mtm
+
+##### (2) DB_SQL
+
+##### (3) REST API
+
+	1. DRF_1n
+	1. DRF_mtm
+
+<hr>
+
+# (0) django monostack CRUD
+
 ## 장고 기본 : 상속 + throw/catch 
 
 `<dir>`
@@ -40,7 +63,13 @@ pr_0409_(pjt06) => crud+Media+statics 전부 적용한거
 
 pr_0407_modelform_crud_명세서
 
-## 개념 > Authentication System
+<br>
+
+<tr>
+
+# (1) authentication system
+
+## Authentication System
 
 `<dir>`
 
@@ -48,11 +77,11 @@ Authentication System
 
 `<명세서>`
 
-개념/ Authentication_System_0411_오전
+Authentication_System_0411_오전
 
-개념/ Authentication_System_0411_오후
+Authentication_System_0411_오후
 
-## 개념 > 1:N database
+## 1:N database
 
 `<dir>`
 
@@ -60,13 +89,13 @@ Authentication System
 
 `<명세서 + 필기>`
 
-개념/ 1n_database_0413_오전
+1n_database_0413_오전
 
-개념/ 1n_database_0413_오후
+1n_database_0413_오후
 
 
 
-## 개념 > like+mtm
+## like+mtm
 
 `<dir>`
 
@@ -74,25 +103,37 @@ like+mtm
 
 `<명세서 + 필기>`
 
-개념/ like+mtm_0418
+like+mtm_0418
 
+<br>
 
+<tr>
 
-## 개념 > REST_API
+# (2) DB_SQL
+
+SQL/ ORM query 공부 pr 파일들 업로드
+
+<br>
+
+<tr>
+
+# (3) REST API
+
+## REST_API (DRF)
 
 `<dir>`
 
+DRF_오전
 
+DRF_오후
+
+DRF_mtm
 
 `<명세서 + 필기>`
 
+DRF_0420
 
-
-
-
-## DB_SQL_only dir/
-
-0314일에 공부했던 db01 공부 => SQL 문 공부한거 정리돼있음
+DRF_mtm
 
 
 
