@@ -1,23 +1,23 @@
 # 목차
 
-##### (0) django monostack CRUD
+(0) django monostack CRUD
 
 	1. 장고 기본 : 상속 + throw/catch 
 	1. CRUD 정리
-	1. ModelForm + Media + statics
+	3. ModelForm + Media + statics
 
-##### (1) authentication system
+(1) authentication system
 
 	1. Authentication System
 	1. 1:N database
 	1. like+mtm
 
-##### (2) DB_SQL
+(2) DB_SQL
 
-##### (3) REST API
+(3) REST API
 
-	1. DRF_1n
-	1. DRF_mtm
+ 	1. DRF_1n
+	2. DRF_mtm
 
 <hr>
 
