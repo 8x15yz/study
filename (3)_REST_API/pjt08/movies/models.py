@@ -12,7 +12,7 @@ class Movie(models.Model):
     overview = models.TextField()
     release_date = models.DateTimeField()
     poster_path = models.TextField()
-    actors = models.ManyToManyField(Actor, related_name="movies")
+    actors = models.ManyToManyField(Actor)
 
 class Review(models.Model):
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
