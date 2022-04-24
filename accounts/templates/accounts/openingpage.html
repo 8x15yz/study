@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>당신의 일상을 공유하고, 다른 유저들과 소통하세요</h1>
+<br>
+<div><a href="{% url 'accounts:signup' %}"><button class='btn' style='outline : solid 1px;'>회원가입</button></a></div>
+<br>
+<div><a href="{% url 'accounts:login' %}"><button class='btn' style='outline : solid 1px;'>계정이 있으신가요?</button></a></div>
+{% endblock content %}

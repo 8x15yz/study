@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-
+<hr>
 <h1>userindex</h1>
 <div>가입순으로 보여집니다. </div>
-
+<br>
 {% for userindex in userindexs %}
     <div>{{userindex}} <a href="{% url 'accounts:profile' userindex.username%}"><button>홈피</button></a></div>
 {% endfor %}

@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
+<h1>login</h1> <a href="{% url 'accounts:signup' %}"><button class='btn' style='outline : solid 1px;'>회원가입</button></a>
+<hr>
 <form method='POST'>
     {% csrf_token %}
-    {{form}}
+    {{form.as_p}}
     <input type="submit" value="submit">
 </form>
 {% endblock content %}
