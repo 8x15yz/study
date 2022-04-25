@@ -9,7 +9,7 @@
         <div> {{ user_article.content }}</div>
         <div> {{ user_article.created_at }}</div>
         <div class="d-flex">
-            <a href="{% url 'accounts:retrieve' user_article.user user_article.pk%}"><i class="far fa-comment"></i></a> {{user_article.comment_set.count}}
+            <a href="{% url 'accounts:retrieve' user_article.user user_article.pk%}" class='btn'><i class="far fa-comment">  {{user_article.comment_set.count}}</i></a> 
             <form action="{% url 'accounts:likeProfile' user_article.pk%}" method='POST'>
                 {% csrf_token %}
                 <button class='btn'>
