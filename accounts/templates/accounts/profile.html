@@ -8,7 +8,19 @@
         <div>{{ user_article.title }}</div>
         <div> {{ user_article.content }}</div>
         <div> {{ user_article.created_at }}</div>
-        <a href="{% url 'accounts:retrieve' user_name user_article.pk%}"><i class="far fa-comment"></i></a> {{user_article.comment_set.count}}
+        <div class="d-flex">
+            <a href="{% url 'accounts:retrieve' user_article.user user_article.pk%}"><i class="far fa-comment"></i></a> {{user_article.comment_set.count}}
+            <form action="{% url 'accounts:likeProfile' user_article.pk%}" method='POST'>
+                {% csrf_token %}
+                <button class='btn'>
+                {% if request.user in user_article.like_users.all %}
+                <i class="fas fa-heart" style="color:red"></i> {{user_article.like_users.count}}
+                {% else %}
+                <i class="far fa-heart"></i> {{user_article.like_users.count}}
+                {% endif %}
+                </button>
+            </form>
+        </div>
         <hr>
     {% endfor %}
 {% endblock content %}

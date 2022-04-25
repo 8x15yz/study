@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import index_to_comment
+from .views import index_to_comment, like_to_follows
 
 app_name = 'accounts'
 urlpatterns = [
@@ -14,5 +14,9 @@ urlpatterns = [
 
     # 댓글로직
     path('profile/<str:username>/retrieve/<int:p_pk>/comments/', index_to_comment.comments_create, name='comments_create'),
+
+    # 좋아요
+    path('likeProfile/<int:pk>/', like_to_follows.likeProfile, name='likeProfile'),
+    path('likeRetrieve/<int:pk>/', like_to_follows.likeRetrieve, name='likeRetrieve'),
 
 ]

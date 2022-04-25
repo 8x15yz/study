@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from ..models import User, Article, Comment
 from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
 from django.contrib.auth import get_user_model
@@ -118,7 +117,7 @@ def retrieve(request, username, p_pk):
         'form':form,
         'comments':comments
     }
-    return render(request, 'accounts/detailpage.html', context)
+    return render(request, 'accounts/detailpage.html', context, )
 
 
 

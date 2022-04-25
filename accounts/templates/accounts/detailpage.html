@@ -1,9 +1,23 @@
 {% extends 'base.html' %}
 {% block content %}
 <hr>
+<div><a href="{% url 'accounts:profile' article.user%}">{{article.user}}</a></div>
+<br>
 <div>{{article.title}}</div>
 <div>{{article.content}}</div>
 <div>{{article.created_at}}</div>
+<div class="d-flex">
+    <form action="{% url 'accounts:likeRetrieve' article.pk%}" method='POST'>
+        {% csrf_token %}
+        <button class='btn'>
+        {% if request.user in article.like_users.all %}
+        <i class="fas fa-heart" style="color:red"></i> {{article.like_users.count}}
+        {% else %}
+        <i class="far fa-heart"></i> {{article.like_users.count}}
+        {% endif %}
+        </button>
+    </form>
+</div>
 <hr>
 <form action="{% url 'accounts:comments_create' article.user article.pk%}" method="POST">
     {% csrf_token %}
