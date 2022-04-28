@@ -2,6 +2,21 @@
 {% block content %}
     <hr>
     <div>{{user_name}}의 프로필 페이지입니다?</div>
+    <div>
+        팔로잉: {{user_name.followings.count}} / 팔로워: {{user_name.followers.count}}
+    </div>
+    {% if user != person %}
+    <div>
+        <form action="{% url 'accounts:follow' user_name.pk%}" method="POST">
+            {% csrf_token %}
+            {% if user in user_name.followers.all %}
+            <input type="submit" value="Unfollow">
+            {% else %}
+            <input type="submit" value="Follow">
+            {% endif %}
+        </form>
+    </div>
+    {% endif %}
     <hr>
     {{user_pk}}
     {% for user_article in user_articles %}

@@ -19,4 +19,6 @@ urlpatterns = [
     path('likeProfile/<int:pk>/', like_to_follows.likeProfile, name='likeProfile'),
     path('likeRetrieve/<int:pk>/', like_to_follows.likeRetrieve, name='likeRetrieve'),
 
+    # 팔로우 & 팔로잉
+    path('follow/<int:user_pk>/',like_to_follows.follow, name='follow'),
 ]

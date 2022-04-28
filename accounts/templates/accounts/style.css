@@ -1,0 +1,28 @@
+body{
+    margin:0;
+    padding:0;
+    background: #000;
+}
+.sec1{
+    width:100%;
+    height:100%;
+}
+.box-holder{
+    position: relative;
+    width:100%;
+    height:2000px;
+    display: flex;
+    justify-content: center;
+}
+#box{
+    position: sticky;
+    top:50%;
+    transform: translate3d(0,-50%,0);
+    width:100px;
+    height:100px;
+    background: rgb(255,0,255);
+    color:#000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
