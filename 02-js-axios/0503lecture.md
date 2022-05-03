@@ -79,5 +79,36 @@ js는 single thread임 => 이벤트를 처리하는 call stack이 하나라는 �
 
 <br>
 
+# 4. Blocking & Non-Blocking
 
+blocking이란? : 코드가 끝날때까지 넘어갈수가 없음 (파이썬이 보통 그런식이었음)
 
+js중에서 몇몇 메서드가 비동기식 운영을 하고 있음 (ajax 나 시간 관련된 동작)
+
+<br>
+
+# 5. Concurrency model
+
+js가 비동기로 메서드를 처리하기 위해 동작하는 흐름에 이제 데이터가 임시로 왔다가 가는 곳들이 있음:
+
+`Web API`, `Task Queue`, `Event Loop`, `Call Stack`
+
+1. 즉시 처리하지 못하는 이벤트가 있으면 Web API로 보내서 처리를 하고
+2. 처리가 되면 Task Queue에 대기시킨다음
+3. Call Stack이 비는 순간  Event Loop 가 큐에서 가장 오래된 (제일 앞의) 이벤트를 call stack으로 보냄
+
+이 네가지 모델이 `Concurrency model` 동시성모델
+
+`Web API` : JS 엔진이 아닌 브라우저 영역에서 제공하는 API
+
+`Task Queue` : 비동기 처리된 callback함수가 일이 끝날때까지 대기하고 있는 곳
+
+(js는 동기식이니까 대기하는 애들을 그 자리에서 기다리지 않고 큐로 보낸다음 후속 코드를 이어서 읽어야됨)
+
+`Event Loop` : cctv라 생각하면 될듯 => call stack이나 task queue에 데이터가 대기하거나 뭐 그런걸 확인하고 대기자들 가야되는 곳에 적절히 보내고 배치하고 하는 역할
+
+ `Call Stack` : 요청이 들어올 때마다 해당 요청을 LIFO로 보내는
+
+<br>
+
+나머지 필기는 내일 이어서 추가하기
