@@ -27,13 +27,66 @@
             <a href="{% url 'accounts:retrieve' user_article.user user_article.pk%}" class='btn'><i class="far fa-comment">  {{user_article.comment_set.count}}</i></a> 
             <form action="{% url 'accounts:likeProfile' user_article.pk%}" method='POST'>
                 {% csrf_token %}
-                <button class='btn'>
+
                 {% if request.user in user_article.like_users.all %}
-                <i class="fas fa-heart" style="color:red"></i> {{user_article.like_users.count}}
-                {% else %}
-                <i class="far fa-heart"></i> {{user_article.like_users.count}}
-                {% endif %}
+                <button class='btn'>
+                <i class="fas fa-heart" style="color:red"></i> 
                 </button>
+                    {% if user_article.like_users.count == 0 %}
+                    <div>가장 먼저 좋아요를 남겨보세요</div>
+                    {% elif user_article.like_users.count == 1 %}
+                    <div>좋아요 {{user_article.like_users.count}}개</div>
+                    {% else %}
+                    <div> 누구님 외 {{user_article.like_users.count}}명이 좋아합니다</div>
+                    {% endif %}
+        
+                {% else %}
+                <button class='btn'>
+                <i class="far fa-heart"></i>
+                </button>
+                    {% if user_article.like_users.count == 0 %}
+                    <div>가장 먼저 좋아요를 남겨보세요</div>
+                    {% elif user_article.like_users.count == 1 %}
+                    <div>좋아요 {{user_article.like_users.count}}개</div>
+                    {% else %}
+                    <div> 누구님 외 {{user_article.like_users.count}}명이 좋아합니다</div>
+                    {% endif %}
+                {% endif %}
+
+                {% comment %} {% if request.user in article.like_users.all %}
+                <button class='btn'>
+                <i class="fas fa-heart" style="color:red"></i> 
+                </button>
+                    {% if user_article.like_users.count == 0 %}
+                    <div>가장 먼저 좋아요를 남겨보세요</div>
+                    {% elif user_article.like_users.count == 1 %}
+                    <div>좋아요 {{user_article.like_users.count}}개</div>
+                    {% else %}
+                    <div> 누구님 외 {{user_article.like_users.count}}명이 좋아합니다</div>
+                    {% endif %}
+
+                {% else %}
+                <button class='btn'>
+                <i class="far fa-heart"></i>
+                </button>
+                    {% if user_article.like_users.count == 0 %}
+                    <div>가장 먼저 좋아요를 남겨보세요</div>
+                    {% elif user_article.like_users.count == 1 %}
+                    <div>좋아요 {{user_article.like_users.count}}개</div>
+                    {% else %}
+                    <div> 누구님 외 {{user_article.like_users.count}}명이 좋아합니다</div>
+                    {% endif %}
+                {% endif %} {% endcomment %}
+
+                {% comment %} <button class='btn'>
+                {% if request.user in user_article.like_users.all %}
+                <i class="fas fa-heart" style="color:red"></i> 
+                {{user_article.like_users.count}}
+                {% else %}
+                <i class="far fa-heart"></i> 
+                {{user_article.like_users.count}}
+                {% endif %}
+                </button> {% endcomment %}
             </form>
         </div>
         <hr>

@@ -9,13 +9,32 @@
 <div class="d-flex">
     <form action="{% url 'accounts:likeRetrieve' article.pk%}" method='POST'>
         {% csrf_token %}
-        <button class='btn'>
+        
         {% if request.user in article.like_users.all %}
-        <i class="fas fa-heart" style="color:red"></i> {{article.like_users.count}}
-        {% else %}
-        <i class="far fa-heart"></i> {{article.like_users.count}}
-        {% endif %}
+        <button class='btn'>
+        <i class="fas fa-heart" style="color:red"></i> 
         </button>
+            {% if article.like_users.count == 0 %}
+            <div>가장 먼저 좋아요를 남겨보세요</div>
+            {% elif article.like_users.count == 1 %}
+            <div>좋아요 {{article.like_users.count}}개</div>
+            {% else %}
+            <div> {{article.like_users.last}}님 외 {{article.like_users.count}}명이 좋아합니다</div>
+            {% endif %}
+
+        {% else %}
+        <button class='btn'>
+        <i class="far fa-heart"></i>
+        </button>
+            {% if article.like_users.count == 0 %}
+            <div>가장 먼저 좋아요를 남겨보세요</div>
+            {% elif article.like_users.count == 1 %}
+            <div>좋아요 {{article.like_users.count}}개</div>
+            {% else %}
+            <div> {{firstUser}}님 외 {{article.like_users.count}}명이 좋아합니다</div>
+            {% endif %}
+        {% endif %}
+
     </form>
 </div>
 <hr>

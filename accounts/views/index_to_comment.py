@@ -117,7 +117,7 @@ def retrieve(request, username, p_pk):
         'form':form,
         'comments':comments
     }
-    return render(request, 'accounts/detailpage.html', context, )
+    return render(request, 'accounts/detailpage.html', context)
 
 
 
