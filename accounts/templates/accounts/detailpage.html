@@ -19,7 +19,7 @@
             {% elif article.like_users.count == 1 %}
             <div>좋아요 {{article.like_users.count}}개</div>
             {% else %}
-            <div> {{article.like_users.last}}님 외 {{article.like_users.count}}명이 좋아합니다</div>
+            <div> {{article.like_users.last}}님 외 <button id="likePeopleButton" data-bs-toggle="modal" data-bs-target="#exampleModal">{{article.like_users.count}}명</button>이 좋아합니다</div>
             {% endif %}
 
         {% else %}
@@ -31,7 +31,7 @@
             {% elif article.like_users.count == 1 %}
             <div>좋아요 {{article.like_users.count}}개</div>
             {% else %}
-            <div> {{firstUser}}님 외 {{article.like_users.count}}명이 좋아합니다</div>
+            <div> {{article.like_users.last}}님 외 <button id="likePeopleButton" data-bs-toggle="modal" data-bs-target="#exampleModal">{{article.like_users.count}}명</button>이 좋아합니다</div>
             {% endif %}
         {% endif %}
 
@@ -47,4 +47,30 @@
 {% for comment in comments %}
 <div><a href="{% url 'accounts:profile' comment.user%}">{{comment.user}}</a>  {{comment.content}}</div>
 {% endfor %}
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">이 게시글을 좋아하는 사람</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          {% for likeUsers in article.like_users.all %}
+            <div>{{ likeUsers }}</div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<script>
+    const likePeopleButton = document.querySelector('#likePeopleButton')
+    likePeopleButton.addEventListener('click', function () {
+        event.preventDefault()
+    })
+    
+</script>
 {% endblock content %}
