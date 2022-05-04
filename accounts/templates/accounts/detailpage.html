@@ -58,7 +58,7 @@
         </div>
         <div class="modal-body">
           {% for likeUsers in article.like_users.all %}
-            <div>{{ likeUsers }}</div>
+            <div><a href="{% url 'accounts:profile' likeUsers%}">{{ likeUsers }}</a></div>
           {% endfor %}
         </div>
       </div>
