@@ -89,7 +89,7 @@ js중에서 몇몇 메서드가 비동기식 운영을 하고 있음 (ajax 나 �
 
 # 5. Concurrency model
 
-js가 비동기로 메서드를 처리하기 위해 동작하는 흐름에 이제 데이터가 임시로 왔다가 가는 곳들이 있음:
+#### js가 비동기로 메서드를 처리하기 위해 동작하는 흐름에 이제 데이터가 임시로 왔다가 가는 곳들이 있음:
 
 `Web API`, `Task Queue`, `Event Loop`, `Call Stack`
 
@@ -97,7 +97,7 @@ js가 비동기로 메서드를 처리하기 위해 동작하는 흐름에 이�
 2. 처리가 되면 Task Queue에 대기시킨다음
 3. Call Stack이 비는 순간  Event Loop 가 큐에서 가장 오래된 (제일 앞의) 이벤트를 call stack으로 보냄
 
-이 네가지 모델이 `Concurrency model` 동시성모델
+#### 이 네가지 모델이 `Concurrency model` 동시성모델
 
 `Web API` : JS 엔진이 아닌 브라우저 영역에서 제공하는 API
 
@@ -111,4 +111,113 @@ js가 비동기로 메서드를 처리하기 위해 동작하는 흐름에 이�
 
 <br>
 
-나머지 필기는 내일 이어서 추가하기
+# 6. 비동기 코드 동작과정 상세
+
+```js
+console.log('Hi')
+setTimeout(function ssafy() {
+    console.log('SSAFY')
+}, 3000)
+
+console.log('Bye')
+```
+
+1. call stack에 `console.log('Hi')` 가 들어감 : output으로 Hi 출력
+2. call stack에 set timeout이 들어감 : 시간 관련된 함수이므로 언제 끝날지 모름 => 따라서 set timeout 내에 있는 ssafty 함수를 통째로 Web API로 보냄
+3. 그렇게 하고 밑에 있는 `console.log('Bye')`를 실행 : output으로 Bye 출력
+4. Web API에서 3000에 대한 일이 끝나면 Task queue로 함수가 넘어옴 (ssafy  함수)
+5.  Task queue에서 대기하다가 call stack이 비워지면 그쪽으로 넘어감
+
+<br>
+
+# 7. callback function이란?
+
+- 다른 함수에 인자로 전달됨 + 외부 함수 내에서 호출됨
+- 비동기/ 동기식 모두 사용됨
+- 비동기 callback (async callback) : 비동기 작업이 완료되고 코드 실행을 계속하는데 사용됨
+
+<br>
+
+### 일급 객체
+
+조건:
+
+- 인자로 넘길 수 있어야됨
+- 함수의 반환값사용할 수 있어야됨
+- 변수에 할당할 수 있어야됨
+
+"js에서는 함수가 일급객체임"
+
+<br>
+
+### Async Callback : 비동기 로직에서 callback은 필수
+
+: 백그라운드에서 코드실행이 끝나면 callback함수를 호출해서 작업이 완료됐음을 알리거나 다음작업을 실행함
+
+(함수의 참조를 인수로 전달할 뿐이고 body에서 callback되기만 하지 실행은 안 됨)
+
+<br>
+
+# 8. Promise
+
+연속되는 작업이 길어지면 callback 함수가 복잡해질 수가 있음: callback hell
+
+ ```js
+ 로직1 (function() {
+         로직2 (function() {
+                 로직3 (function() {
+                         로직4 (function() {
+                                 로직5 (function() {
+                                     // do something
+                     })
+                 })
+             })
+         })
+ })
+ ```
+
+이런 식으로 코드가 복잡해지고 또 이 연달아 작업하는 로직들이 다 성공한다는 보장도 없음
+
+따라서 이런 작업을 보완하기 위한 방법: `promise callback ` 가 필요함
+
+### promise callback
+
+: 비동기 작업에 대해서 해당 작업이 끝나면 할 일을 미리 지정해주는 방법임
+
+여기 메서드에는 세가지 정도가 있음 : `.then`  `.catch` `.finally`
+
+1.  `.then(callback)` : 앞 로직이 성공하면 실행하는 로직, 앞에서 성공인자를 전달받음
+
+2. `.catch(callback)` : 앞 로직이 실패한다면 실행하는 로직, try-except과 비슷함
+
+3. `.finally(callback)` : 이 구문이 있으면 성공여부 관계없이 작업이 끝나고 꼭 할 일임 
+
+   인자 전달은 안받기 때문에 다음과 같이 표현함:
+
+   ```js
+   .finally( () => // do something )
+   ```
+
+    
+
+<br>
+
+# 9. Axios : promise based HTTP Client
+
+원래는 우리가 내장 브라우저 객체로 ajax를 처리했는데 axios를 쓴다면? 너무편하다
+
+몇 줄 써야되는걸 코드를 확 줄일 수 있음
+
+### axios 쓰려면 : CDN을 활용해야됨
+
+1. scripts 태그 내에 src 속성 열고 CDN 복붙하기
+2. API 가져와서 URL 상수 내에 할당하고 
+3. axios.get(URL) 하면 됨
+4. 파싱도 axios가 해줌
+
+
+
+axios 기본 틀:
+
+1. 상수 만들어서 URL을 get으로 받아오고 
+2. 상수.then.then.catch.then ... .. 이런식으로 코드를 작성하면 됨
