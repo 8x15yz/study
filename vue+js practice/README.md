@@ -7,7 +7,7 @@
 3. 0428 ws (5개)
 4. 0502 ws (dog API)
 5. 0503 pr (django 좋아요/ 팔로우 js 비동기로 변경하기)
-6. 0502 pr (에듀토니 파이썬 애니웨어  댓글 API logic)
+6. 0502 pr (에듀토니 파이썬 애니웨어  댓글 API logic) `v`
 
 ## 2. Vue_practice repository
 
