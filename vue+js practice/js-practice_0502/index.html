@@ -8,7 +8,8 @@
 </head>
 <body>
   <form>
-    <input type="text">
+    <input type="text" id="title">
+    <input type="text" id="content">
     <button>제출</button>
   </form>
   <ul id="article-list"></ul>
@@ -22,26 +23,46 @@
     const form = document.querySelector('form')
 
     form.addEventListener('submit', function (event) {
-
       event.preventDefault()
-
       axios.post(API_URI, {
-        title: event.target.childNodes[1].value,
-        content: event.target.childNodes[1].value
-      })
-      .then(response => {
-        console.log(response)
+        title: event.target.querySelector('#title').value,
+        content: event.target.querySelector('#content').value
       })
     })
 
     axios.get(API_URI)
       .then(response => {
         response.data.forEach(article => {
+          // console.log(article)
           const articleItem = document.createElement('li')
-          articleItem.innerText = article.title
+          articleItem.setAttribute('id', `${article.id}`)
+          articleItem.innerText = `${article.id}. ${article.title} : ${article.content}  `
+          
+          const deleteButton = document.createElement('button')
+          const updateButton = document.createElement('button')
+          deleteButton.setAttribute('id', '#delete')
+          updateButton.setAttribute('id', '#update')
+
+          deleteButton.innerText = '삭제?'
+          updateButton.innerText = '수정?'
+
           articleList.appendChild(articleItem)
+          articleItem.append(deleteButton, updateButton)
         })
       })
+
+    articleList.addEventListener('click', function (event) {
+        const getPathId = event.path[1].id
+        const getTargetId = event.target.id
+        console.log(getPathId, getTargetId)
+
+        if (getTargetId === '#delete') {
+          axios.delete(API_URI+`${getPathId}/`)
+        } else if (getTargetId === '#update') {
+          
+        }
+    })
+
   </script>
 </body>
 </html>
