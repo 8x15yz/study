@@ -31,7 +31,9 @@ searchBtn.addEventListener('click', function fetchAlbums (event, page=1, limit=1
         const img = album.image.find(elem => {
           return elem.size ==='small'
         })
-        divTag.innerText = `${album.name} ${img.size}`
+        console.log(img.size)
+
+        divTag.innerText = `${album.name} ${img['#text']}`
         searchResult.append(divTag)
       }
     })
