@@ -15,7 +15,7 @@ def homepage(request):
     context={
         
     }
-    return render(request,'thpr/homepage.html')#,context)
+    return render(request,'thpr/homepage.html',context)
 
     
 
