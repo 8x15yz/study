@@ -2,8 +2,9 @@ import matplotlib.pyplot as plt
 from PIL import Image
 from wordcloud import WordCloud
 import numpy as np
-def tm(text):
-    # text = '숨겨진 내용 토니z 토니 토니 화이팅 힘내요 화이팅 힘내 입력'+''
+def tm(text,number):
+    # pass
+    text = '숨겨진 내용 토니z 토니 토니 화이팅 힘내요 화이팅 힘내 입력'+''
     wordList = text.split()
     worduniq=set(wordList)
     wordCount={}
@@ -22,4 +23,4 @@ def tm(text):
     plt.imshow(wordcloud)
     plt.axis('off')
     # plt.show()
-    plt.savefig('./media/images/fig1.png', bbox_inches='tight')
+    plt.savefig(f'./media/images/fig{number}.png', bbox_inches='tight')

@@ -6,16 +6,12 @@ from django.shortcuts import render, redirect, get_object_or_404
 from . import wc
 def homepage(request):
     textMessage = TextMessage.objects.order_by('-pk')
+    print("asd")
     
-    # total_text=''
-    # for i in range(len(textMessage)):
-    #     total_text += textMessage[i].content
-    
-    # wc.tm(total_text)
-    # context={
-        
-    # }
-    return render(request,'thpr/homepage.html')#,context)
+    context={
+        'num':textMessage[0].pk
+    }
+    return render(request,'thpr/homepage.html',context)
 
     
 
@@ -33,7 +29,12 @@ def create(request):
         textMessage = TextMessageForm(request.POST)
         if textMessage.is_valid():
             textMessage.save()
-            
+
+            textMessage2 = TextMessage.objects.order_by('-pk')
+            total_text=''
+            for i in range(len(textMessage2)):
+                total_text += textMessage2[i].content
+            wc.tm(total_text,textMessage2[0].pk)
             return redirect('thpr:index')
     else:
         textMessage = TextMessageForm()
