@@ -15,7 +15,7 @@ def homepage(request):
     context={
         
     }
-    return render(request,'thpr/homepage.html',context)
+    return render(request,'thpr/homepage.html')#,context)
 
     
 
@@ -42,10 +42,10 @@ def create(request):
     }
     return render(request, 'thpr/create.html', context)
 
-def delete(request,text_id):
-    textmessage = get_object_or_404(TextMessage, id=text_id)
-    textmessage.delete()
-    return redirect('predicts:index')
+def delete(request, pk):
+    text = TextMessage.objects.get(pk=pk)
+    text.delete()
+    return redirect('thpr:index')
 
 
 

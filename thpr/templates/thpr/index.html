@@ -24,9 +24,9 @@
                     <p>{{ text.content }}</p>
                     <h5 class='text-end'>by {{ text.autor }}</h5>
                     <div class="d-flex ">
-                      <form action="{% url 'thpr:delete' text.pk %}" method=''>
+                      <form action="{% url 'thpr:delete'  text.pk%}" method='POST' id="{{text.pk}}">
                         {% csrf_token %}
-                        <input id=text.pk  class="mx-1 btn btn-outline-danger" type="submit" value="삭제">
+                        <input id="{{text.pk}}"  class="mx-1 btn btn-outline-danger" type="submit" value="삭제">
                       </form>                       
                     </div>
                   </div>
