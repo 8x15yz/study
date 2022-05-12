@@ -7,15 +7,15 @@ from . import wc
 def homepage(request):
     textMessage = TextMessage.objects.order_by('-pk')
     
-    total_text=''
-    for i in range(len(textMessage)):
-        total_text += textMessage[i].content
+    # total_text=''
+    # for i in range(len(textMessage)):
+    #     total_text += textMessage[i].content
     
-    wc.tm(total_text)
-    context={
+    # wc.tm(total_text)
+    # context={
         
-    }
-    return render(request,'thpr/homepage.html',context)
+    # }
+    return render(request,'thpr/homepage.html')#,context)
 
     
 
