@@ -46,6 +46,7 @@ def create(request):
 def delete(request, pk):
     text = TextMessage.objects.get(pk=pk)
     text.delete()
+    
     return redirect('thpr:index')
 
 
