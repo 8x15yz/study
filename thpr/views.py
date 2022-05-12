@@ -1,25 +1,48 @@
 from .models import TextMessage
 from .form import TextMessageForm
-from django.shortcuts import render
+from django.shortcuts import render,redirect
+from django.views.decorators.http import require_http_methods
+from django.shortcuts import render, redirect, get_object_or_404
+from . import wc
+def homepage(request):
+    textMessage = TextMessage.objects.order_by('-pk')
+    
+    total_text=''
+    for i in range(len(textMessage)):
+        total_text += textMessage[i].content
+    
+    wc.tm(total_text)
+    context={
+        
+    }
+    return render(request,'thpr/homepage.html',context)
 
+    
 
 def index(request):
-    datum = TextMessage.objects.all()
+    texts = TextMessage.objects.order_by('-pk')
     context = {
-        'datum':datum
+        'texts':texts
     }
-    return render(request, 'thpr.index.html', context)
+    return render(request, 'thpr/index.html', context)
 
 
+@require_http_methods(['GET', 'POST'])
 def create(request):
-    form = TextMessageForm()
+    if request.method == 'POST':
+        textMessage = TextMessageForm(request.POST)
+        if textMessage.is_valid():
+            textMessage.save()
+            
+            return redirect('thpr:index')
+    else:
+        textMessage = TextMessageForm()
     context = {
-        'form':form
+        'textMessage': textMessage,
     }
-    return render(request, 'thpr.index.html', context)
+    return render(request, 'thpr/create.html', context)
 
 
-def detail(request, pk):
-    data = TextMessage.objects.get(pk=pk)
-    return 
+
+
     
