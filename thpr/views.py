@@ -42,6 +42,11 @@ def create(request):
     }
     return render(request, 'thpr/create.html', context)
 
+def delete(request,text_id):
+    textmessage = get_object_or_404(TextMessage, id=text_id)
+    textmessage.delete()
+    return redirect('predicts:index')
+
 
 
 

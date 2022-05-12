@@ -16,7 +16,7 @@ def tm(text):
         wordCount[w]=wordList.count(w)
 
     wordcloud = WordCloud(background_color ='white', colormap='autumn',font_path='Cafe24Ohsquare.ttf',
-                      max_font_size=200,width = 700, height = 500, mask = mask_arr,
+                      max_font_size=300,width = 700, height = 500, mask = mask_arr,
                       prefer_horizontal = True).generate_from_frequencies(wordCount)
     plt.figure(figsize=(6,6))
     plt.imshow(wordcloud)
