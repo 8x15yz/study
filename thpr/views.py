@@ -34,6 +34,7 @@ def create(request):
             total_text=''
             for i in range(len(textMessage2)):
                 total_text += textMessage2[i].content
+                total_text += textMessage2[i].title
             wc.tm(total_text,textMessage2[0].pk)
             return redirect('thpr:index')
     else:

@@ -4,7 +4,7 @@ from wordcloud import WordCloud
 import numpy as np
 def tm(text,number):
     # pass
-    text = '숨겨진 내용 토니z 토니 토니 화이팅 힘내요 화이팅 힘내 입력'+''
+    #text = '숨겨진 내용 토니z 토니 토니 화이팅 힘내요 화이팅 힘내 입력'+''
     wordList = text.split()
     worduniq=set(wordList)
     wordCount={}
