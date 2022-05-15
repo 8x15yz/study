@@ -23,4 +23,5 @@ def tm(text,number):
     plt.imshow(wordcloud)
     plt.axis('off')
     
+    #
     plt.savefig(f'./media/images/fig{number}.png', bbox_inches='tight')
