@@ -1,0 +1,10 @@
+<h1>실습4: {{pick}}이 오늘 저녁<h1>
+<h1>{{pick}}은 {{pick|length}}글자<h1>
+
+<p>메뉴판</p>
+<ul>
+    {% for food in foods %}
+        <li>{{ food }}</li>
+    {% endfor %}
+</ul>
+<a href="/article/">뒤로</a>

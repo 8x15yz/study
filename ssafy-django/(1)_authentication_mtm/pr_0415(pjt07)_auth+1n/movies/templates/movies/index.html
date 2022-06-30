@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mx-3">
+    <h1 class = "fw-bold mx-5">Index Page</h1>
+    <hr>
+    <div class = "fw-bold mx-5">
+        {% for movie in movies  %}
+            <a href="{% url 'movies:detail' movie.pk %}"  style="text-decoration:none; color:black">
+                {{ movie.title }} ... by {{ movie.user }}
+            </a>
+            <hr>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}

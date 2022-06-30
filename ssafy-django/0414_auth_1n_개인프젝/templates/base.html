@@ -1,0 +1,30 @@
+{% load bootstrap5 %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% bootstrap_css %}
+  <title>Document</title>
+</head>
+<body>
+  <div class="container">
+    <h3>hello, {{user}}</h3>
+    {% if request.user.is_authenticated %}
+    <div><a href="{% url 'articles:create' %}"><button>[CREATE]</button></a></div>
+    <div><a href="{% url 'accounts:logout' %}"><button>로그아웃</button></a></div>
+    <div><a href="{% url 'accounts:delete' %}"><button>횐탈퇴</button></a></div>
+    <div><a href="{% url 'accounts:update' %}"><button>횐정보수정</button></a></div>
+    {% else %}
+    <div><a href="{% url 'accounts:login' %}"><button>로그인</button></a></div>
+    <div><a href="{% url 'accounts:signup' %}"><button>횐가입</button></a></div>
+    {% endif %}
+    
+    {% block content %}
+    {% endblock %}
+  </div>
+  {% bootstrap_javascript %}
+</body>
+</html>

@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<body>
+    <div class="container h-100" >
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="card mt-5 pt-5" style="max-width: 90%">
+                <h1 class="h2 m-3 text-center">영화 정보 상세 페이지 : "{{ movies.title }}"</h1>
+                <div class="card-body row d-flex justify-content-center align-items-center h-100">
+                    <div class="d-flex justify-content-center"><img src="{{movies.poster_url}}" alt="로드할 수 없는 이미지입니다 ㅠㅠ"></div>
+                    <div class="mt-2"> 관객 수 : {{ movies.audiance }}</div>
+                    <div class="mt-2">개봉일 : {{ movies.release_date }}</div>
+                    <div class="mt-2">장르 : {{ movies.genre }}</div>
+                    <div class="mt-2">평점 : {{ movies.score }}</div>
+                    <div class="mt-2">줄거리 : {{ movies.description }}</div>
+                    <!-- Button trigger modal -->
+                    <div>
+                      <button type="button" class="btn btn-primary m-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        스틸컷 보기
+                      </button>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center mb-5">
+          <!-- Button trigger modal -->
+          <div>
+            <button type="button" class="btn btn-danger m-3" data-bs-toggle="modal" data-bs-target="#deleteModal">
+              삭제하기
+            </button>
+          </div>
+          <a href="{% url 'movies:update' movies.pk%}" class=""><button type="button" class="btn btn-secondary m-3">수정하기</button></a>
+      </div>
+  </div>
+
+
+  
+</div>
+
+<!-- delete Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">정말 삭제하나요?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        삭제된 이미지는 복구할 수 없습니다. 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <form action="{% url 'movies:delete' movies.pk%}" method="POST">
+          {% csrf_token %}
+          <button class="btn btn-danger m-3">삭제하기</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- stillcut Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">스틸컷</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {% if movies.image %}
+          <div class="mt-2 mb-2"><img src="{{ movies.image.url }}" alt="{{ movies.image }}"></div>
+        {% else %}
+          <div class="mt-2 mb-2"><img src="{% static 'no_still_cut.png' %}" alt="no_still_cut.png"></div>
+        {% endif %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock content %}
