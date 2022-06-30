@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <bounce class='bounce'><h1 class="mt-5 text-center">우리들의 마음 </h1> </bounce>
+    <div class="m-5">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+          {% for text in texts %}
+          {% if text.pk == 5  %}
+            <bounce class='bounce'>
+              <div class="col">
+                    <div class="card">
+                      <div   class="card-body">
+                        
+                        <h1 class='text-primary'>{{ text.title }}</h1>
+                        <hr>
+                        <pre  class='text' >{{ text.content}}</pre>
+                        <h5 class='text-end'>by {{ text.autor }}</h5>
+                        
+                      </div>
+                    </div>
+                
+                </div> 
+            </bounce>
+            {% elif text.pk == 9   %}
+            <bounce class='bounce'>
+              <div class="col">
+                    <div class="card">
+                      <div class="card-body">
+                        
+                        <h1 class='text-primary'>{{ text.title }}</h1>
+                        <hr>
+                        <pre class='text-success' >{{ text.content }}</pre>
+                        <h5 class='text-end'>by {{ text.autor }}</h5>
+                        
+                      </div>
+                    </div>
+                
+                </div> 
+            </bounce>
+            {% else %}
+            <div class="col">
+              <div class="card">
+                <div class="card-body">
+                  
+                  <h1>{{ text.title }}</h1>
+                  <hr>
+                  <pre>{{ text.content }}</pre>
+                  <h5 class='text-end'>by {{ text.autor }}</h5>
+                  <div class="d-flex ">
+                    <form action="{% url 'thpr:delete'  text.pk%}" method='POST' id="{{text.pk}}">
+                      {% csrf_token %}
+                      <input id="{{text.pk}}"  class="mx-1 btn btn-outline-danger" type="submit" value="삭제">
+                    </form>                       
+                  </div>
+                </div>
+              </div>
+          
+          </div> 
+            {% endif %}
+            {% endfor %}
+        </div>
+</body>
+</html>
+<script>
+  var contents = document.querySelector('textarea')
+  contents = contents.value.replace(/(\n|\r\n)/g,'<br>')
+</script>
+{% endblock content %}
