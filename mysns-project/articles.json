@@ -1,0 +1,46 @@
+[
+{
+    "model": "accounts.article",
+    "pk": 1,
+    "fields": {
+        "user": 5,
+        "title": "저의 첫 게시글입니다.",
+        "content": "안녕하세요?",
+        "created_at": "2022-04-20T12:21:41.052Z",
+        "like_users": []
+    }
+},
+{
+    "model": "accounts.article",
+    "pk": 2,
+    "fields": {
+        "user": 2,
+        "title": "간지의 첫 게시글",
+        "content": "정말 간지난다",
+        "created_at": "2022-04-20T13:01:22.480Z",
+        "like_users": []
+    }
+},
+{
+    "model": "accounts.article",
+    "pk": 3,
+    "fields": {
+        "user": 5,
+        "title": "두번째 작성",
+        "content": "오늘 재밌는날이었음",
+        "created_at": "2022-04-21T10:10:15.253Z",
+        "like_users": []
+    }
+},
+{
+    "model": "accounts.article",
+    "pk": 4,
+    "fields": {
+        "user": 1,
+        "title": "증말행복합니다 ~",
+        "content": "글도써지고 댓글도써지고 ~",
+        "created_at": "2022-04-21T11:37:50.674Z",
+        "like_users": []
+    }
+}
+]

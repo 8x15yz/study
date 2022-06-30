@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block content %}
+    <hr>
+    <div>{{user_name}}의 프로필 페이지입니다?</div>
+    <div>
+        팔로잉: {{user_name.followings.count}} / 팔로워: {{user_name.followers.count}}
+    </div>
+    {% if user != person %}
+    <div>
+        <form action="{% url 'accounts:follow' user_name.pk%}" method="POST">
+            {% csrf_token %}
+            {% if user in user_name.followers.all %}
+            <input type="submit" value="Unfollow">
+            {% else %}
+            <input type="submit" value="Follow">
+            {% endif %}
+        </form>
+    </div>
+    {% endif %}
+    <hr>
+    {{user_pk}}
+    {% for user_article in user_articles %}
+        <div>{{ user_article.title }}</div>
+        <div> {{ user_article.content }}</div>
+        <div> {{ user_article.created_at }}</div>
+        <div class="d-flex">
+            <a href="{% url 'accounts:retrieve' user_article.user user_article.pk%}" class='btn'><i class="far fa-comment">  {{user_article.comment_set.count}}</i></a> 
+            <form action="{% url 'accounts:likeProfile' user_article.pk%}" method='POST'>
+                {% csrf_token %}
+
+                {% if request.user in user_article.like_users.all %}
+                <button class='btn'>
+                <i class="fas fa-heart" style="color:red"></i> 
+                </button>
+                    {% if user_article.like_users.count == 0 %}
+                    <div>가장 먼저 좋아요를 남겨보세요</div>
+                    {% elif user_article.like_users.count == 1 %}
+                    <div>좋아요 {{user_article.like_users.count}}개</div>
+                    {% else %}
+                    <div> {{user_article.like_users.last}}님 외 <button id="likePeopleButton" data-bs-toggle="modal" data-bs-target="#exampleModal">{{user_article.like_users.count}}명</button>이 좋아합니다</div>
+                    {% endif %}
+        
+                {% else %}
+                <button class='btn'>
+                <i class="far fa-heart"></i>
+                </button>
+                    {% if user_article.like_users.count == 0 %}
+                    <div>가장 먼저 좋아요를 남겨보세요</div>
+                    {% elif user_article.like_users.count == 1 %}
+                    <div>좋아요 {{user_article.like_users.count}}개</div>
+                    {% else %}
+                    <div> {{user_article.like_users.last}}님 외 <button id="likePeopleButton" data-bs-toggle="modal" data-bs-target="#exampleModal">{{user_article.like_users.count}}명</button>이 좋아합니다</div>
+                    {% endif %}
+                {% endif %}
+            </form>
+        </div>
+        <hr>
+
+          <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">이 게시글을 좋아하는 사람</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                {% for likeUsers in user_article.like_users.all %}
+                    <div><a href="{% url 'accounts:profile' likeUsers%}">{{ likeUsers }}</a></div>
+                {% endfor %}
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <script>
+            const likePeopleButton = document.querySelector('#likePeopleButton')
+            likePeopleButton.addEventListener('click', function () {
+                event.preventDefault()
+            })
+        </script>
+    {% endfor %}
+{% endblock content %}

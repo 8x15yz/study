@@ -1,0 +1,97 @@
+[
+{
+    "model": "accounts.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$SvRnth8YX8EwbX2nJMO1VB$0zz+FgFTqayK4TaT8+nNDfhfA3fplIWlmTh+sYDe5lU=",
+        "last_login": "2022-04-21T11:37:29.707Z",
+        "is_superuser": false,
+        "username": "8x15yz",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2022-04-20T11:56:38.721Z",
+        "groups": [],
+        "user_permissions": [],
+        "followings": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$qOFOqpXuKIGc6APXehNzMS$8azjFSrATMlvJo4IFAsLJGSciXiQwPxLewnc6Zk0SXU=",
+        "last_login": "2022-04-20T13:01:06.849Z",
+        "is_superuser": false,
+        "username": "ganzi",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2022-04-20T11:56:56.448Z",
+        "groups": [],
+        "user_permissions": [],
+        "followings": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$D96soLjbap6tE6asVcea7J$towCSTXdE7bpnzotNEu48i0x4Rfcs2wflfY+Lt2CLMA=",
+        "last_login": "2022-04-20T12:01:34.342Z",
+        "is_superuser": false,
+        "username": "jay",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2022-04-20T11:57:05.902Z",
+        "groups": [],
+        "user_permissions": [],
+        "followings": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 4,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$ZW8cq1Gyejz5tScH5sKJVx$Twx6J8i2VlKvt7Y+k3y0VcaMZREy5sBdfLjockW9iYM=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "nimo0809",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2022-04-20T11:57:27.653Z",
+        "groups": [],
+        "user_permissions": [],
+        "followings": []
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 5,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$ThiLvOH4GTEZmRzGTvQhHk$7Bl3JlmiffHiZ4KhGLqMLW8YnvP3RdyBhZyW1BjEV2E=",
+        "last_login": "2022-04-21T10:08:58.946Z",
+        "is_superuser": false,
+        "username": "dori1234",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2022-04-20T12:09:20.950Z",
+        "groups": [],
+        "user_permissions": [],
+        "followings": []
+    }
+}
+]

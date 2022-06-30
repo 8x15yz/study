@@ -1,0 +1,119 @@
+[
+{
+    "model": "accounts.comment",
+    "pk": 1,
+    "fields": {
+        "article": 3,
+        "user": 5,
+        "content": "ㅠㅠㅠㅠㅠ"
+    }
+},
+{
+    "model": "accounts.comment",
+    "pk": 2,
+    "fields": {
+        "article": 3,
+        "user": 5,
+        "content": "ㅠㅠㅠㅠㅠ"
+    }
+},
+{
+    "model": "accounts.comment",
+    "pk": 3,
+    "fields": {
+        "article": 3,
+        "user": 5,
+        "content": "fdg"
+    }
+},
+{
+    "model": "accounts.comment",
+    "pk": 4,
+    "fields": {
+        "article": 3,
+        "user": 5,
+        "content": "saet"
+    }
+},
+{
+    "model": "accounts.comment",
+    "pk": 5,
+    "fields": {
+        "article": 3,
+        "user": 5,
+        "content": "fdg"
+    }
+},
+{
+    "model": "accounts.comment",
+    "pk": 6,
+    "fields": {
+        "article": 3,
+        "user": 5,
+        "content": "ㅠㅠㅠㅠㅠ"
+    }
+},
+{
+    "model": "accounts.comment",
+    "pk": 7,
+    "fields": {
+        "article": 3,
+        "user": 5,
+        "content": "뎃글써볼게요 ~"
+    }
+},
+{
+    "model": "accounts.comment",
+    "pk": 8,
+    "fields": {
+        "article": 1,
+        "user": 5,
+        "content": "이거왜안되냐 ? 앙?? 맞고싶어"
+    }
+},
+{
+    "model": "accounts.comment",
+    "pk": 9,
+    "fields": {
+        "article": 2,
+        "user": 5,
+        "content": "아니 댓글이  ㅠㅠ ㅠ ㅠ ㅠ ㅠ 이러면안돼"
+    }
+},
+{
+    "model": "accounts.comment",
+    "pk": 10,
+    "fields": {
+        "article": 2,
+        "user": 5,
+        "content": "됐을까요?"
+    }
+},
+{
+    "model": "accounts.comment",
+    "pk": 11,
+    "fields": {
+        "article": 2,
+        "user": 5,
+        "content": "됐을까요?"
+    }
+},
+{
+    "model": "accounts.comment",
+    "pk": 12,
+    "fields": {
+        "article": 2,
+        "user": 5,
+        "content": "와됏다 ㅠㅠㅠ"
+    }
+},
+{
+    "model": "accounts.comment",
+    "pk": 13,
+    "fields": {
+        "article": 3,
+        "user": 1,
+        "content": "여기 정말 유명한 곳이군요 ?"
+    }
+}
+]
