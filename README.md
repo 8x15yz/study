@@ -5,7 +5,7 @@
 
 
 ### 데이터 전처리
-[220120](./결측치메우기/) : 데이터 전처리 - 결측치 메우기 공부
+[220120](https://github.com/8x15yz/Data-Study/tree/main/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EC%A0%84%EC%B2%98%EB%A6%AC%20%EA%B3%B5%EB%B6%80/%EA%B2%B0%EC%B8%A1%EC%B9%98%20%EB%A9%94%EC%9A%B0%EA%B8%B0) : 데이터 전처리 - 결측치 메우기 공부
 
 [220623](https://github.com/8x15yz/Data-Study/tree/main/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EC%A0%84%EC%B2%98%EB%A6%AC%20%EA%B3%B5%EB%B6%80/220623) : excel + python으로 데이터 전처리하여 api구성
 
