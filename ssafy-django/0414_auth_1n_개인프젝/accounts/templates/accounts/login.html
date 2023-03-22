@@ -1,8 +1,0 @@
-{% extends 'base.html' %}
-{% block content %}
-<form action="{% url 'accounts:login'%}" method="POST">
-    {% csrf_token %}
-    {{forms.as_p}}
-<button>제출</button>
-</form>
-{% endblock content %}
