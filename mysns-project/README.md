@@ -5,19 +5,6 @@ authentication과 좋아요/팔로우/댓글달기 등의 sns 기능을 구현�
 사용한 웹 프레임워크 : `Django` 
 
 ### [🎬시연영상](https://youtu.be/pz-iS8NrZRY?si=8y9DxY2_8ZbN5yyh)
-<br>
-
-
-## ✅해야되는 일
-
-
-1. 사진 추가기능 (media + static 사용해야됨 -> 모델 갈아엎기)
-2. 좋아요 기능 추가 `v`
-3. 팔로우 기능 추가 `v`
-4. 대댓글 
-5. 좋아요 누른 유저 목록 보여주기 (모달 폼으로 보여주기) `v`
-6. forAnonymousUser 페이지 꾸미기
-
 
 <br>
 
