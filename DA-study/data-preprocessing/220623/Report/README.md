@@ -67,7 +67,7 @@ DETP1 Report
    
    완성 데이터:
    
-   ![](./img/01.png)
+   ![](Back-End-Study/DA-study/data-preprocessing/220623/Report/img/01.png)
 
 ​		이 데이터를 이제 csv 형식으로 바꿀 예정
 
@@ -85,7 +85,7 @@ DETP1 Report
 
 2. ERD
 
-   ![](./img/03.png)
+   ![](Back-End-Study/DA-study/data-preprocessing/220623/Report/img/03.png)
 
    +) trade_pm은 무역수지가 음수면 0, 양수면 1으로 기입하였음
 
@@ -95,7 +95,7 @@ DETP1 Report
 
 4. REST API로 내보내기
 
-   ![](./img/02.png)
+   ![](Back-End-Study/DA-study/data-preprocessing/220623/Report/img/02.png)
 
 잘 나왔음
 
@@ -107,21 +107,21 @@ DETP1 Report
 
 component에서 axios로 api를 받아왔음
 
-![](./img/04.png)
+![](Back-End-Study/DA-study/data-preprocessing/220623/Report/img/04.png)
 
 잘 받아옴ㅎㅎ
 
-![](./img/05.png)
+![](Back-End-Study/DA-study/data-preprocessing/220623/Report/img/05.png)
 
 뿌리는것도 성공!!
 
-![](./img/06.png)
+![](06.png)
 
 v-for문으로 정렬함
 
 2. 대시보드 디자인
 
-​	![](./img/07.png)라인차트는 [Chart.js](https://pinokio0702.tistory.com/388) 사용할 예정 [참고](https://velog.io/@rhak39/Vue-Chart.js-%EC%A0%95%EB%A6%AC)
+​	![](07.png)라인차트는 [Chart.js](https://pinokio0702.tistory.com/388) 사용할 예정 [참고](https://velog.io/@rhak39/Vue-Chart.js-%EC%A0%95%EB%A6%AC)
 
 개별 데이터를 선택해서 조회할 수 있도록 각각 체크박스를 달 것이고
 

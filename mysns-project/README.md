@@ -4,24 +4,20 @@
 
 사용한 웹 프레임워크 : `Django` 
 
-In this project, I worked on making SNS that can send and recive data. 
-
-It is used Django (the web framework from python), and used the most basic skill CRUD among them.
 
 <br>
 
 
-## -1. 해야되는 일
+## ✅해야되는 일
 
 
 1. 사진 추가기능 (media + static 사용해야됨 -> 모델 갈아엎기)
 2. 좋아요 기능 추가 `v`
-2. 팔로우 기능 추가 `v`
-2. 대댓글 
-2. 좋아요 누른 유저 목록 보여주기 (모달 폼으로 보여주기) `v`
-2. forAnonymousUser 페이지 꾸미기
+3. 팔로우 기능 추가 `v`
+4. 대댓글 
+5. 좋아요 누른 유저 목록 보여주기 (모달 폼으로 보여주기) `v`
+6. forAnonymousUser 페이지 꾸미기
 
-또 생각나면 추가하기
 
 <br>
 
@@ -52,9 +48,9 @@ It is used Django (the web framework from python), and used the most basic skill
 
 [0421/](./record/mysns_0421.md) 6~7 과정 진행
 
-[0424/](./record/mysns_0424.md) 8~10 과정 진행 (노동요 - 암호준재 쌈밥)
+[0424/](./record/mysns_0424.md) 8~10 과정 진행
 
-[0425/](./record/mysns_0425.md) 11 과정 진행 (노동요 - 암호준재 요즘하루)
+[0425/](./record/mysns_0425.md) 11 과정 진행
 
 [0428/](./record/mysns_0428.md) 12 과정 진행
 

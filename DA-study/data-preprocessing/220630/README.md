@@ -13,11 +13,11 @@
 
 **개요**
 
-![](./img/01.png)
+![](Back-End-Study/DA-study/data-preprocessing/220630/img/01.png)
 
 `3번 파일의 br_c` 컬럼을 기준으로 `5번 파일의 br_c` 에서 해당하는 행을 찾아 `zon_hlv`, `zon_mcls` 를 연결하는 작업을 진행
 
-![](./img/02.png)
+![](Back-End-Study/DA-study/data-preprocessing/220630/img/02.png)
 
 ## 2. 코드 설명
 
@@ -35,7 +35,7 @@ csv_03['zon_mcls'] = np.NaN
 csv_03.head()
 ```
 
-![](./img/03.png)
+![](Back-End-Study/DA-study/data-preprocessing/220630/img/03.png)
 
 nan 값으로 채워진 새로운 컬럼이 생성됨
 
@@ -70,4 +70,4 @@ csv_03.to_csv("csv_03.csv")
 
 ## 결과 사진
 
-![](./img/04.png)
+![](Back-End-Study/DA-study/data-preprocessing/220630/img/04.png)

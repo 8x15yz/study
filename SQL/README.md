@@ -5,11 +5,11 @@
 1. SQL 분류 (DDL/ DML/ DCL)
 2. CRUD 이전 sql 환경 사용해보기
 3. CRUD_Create
-3. CRUD_Read
-3. CRUD_Delete
-3. CRUD_Update
-3. CRUD정리
-3. WHERE
+4. CRUD_Read
+5. CRUD_Delete
+6. CRUD_Update
+7. CRUD정리
+8. WHERE
 
 # 1. SQL 분류 (DDL/ DML/ DCL)
 

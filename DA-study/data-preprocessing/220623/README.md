@@ -8,7 +8,7 @@ https://www.data.go.kr/data/3040156/fileData.do
 
 ## 사용한 기술스택
 
-![](./Report/img/stack.png)
+![](stack.png)
 
 1. python, excel으로 데이터 전처리를 진행하였습니다.
 2. django로 REST API를 구성하였습니다. 

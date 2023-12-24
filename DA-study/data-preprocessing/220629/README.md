@@ -11,11 +11,11 @@
 
 **개요**
 
-![](./img/02.png)
+![](Back-End-Study/DA-study/data-preprocessing/220629/img/02.png)
 
 위처럼 나뉘어져 있는 파일을 아래와 같이 합치는 작업을 하였음
 
-![](./img/01.png)
+![](Back-End-Study/DA-study/data-preprocessing/220629/img/01.png)
 
 1. 이용일자와 방문일자는 `연/월/일` 컬럼으로 나눴음
 2. 3번 파일의 점포코드와 5번 파일의 점포코드를 기준으로 데이터를 연결하였음
@@ -32,7 +32,7 @@
 
 3+5 > **`db_to_csv.py`** : 완성한 db를 csv로 변환하는 
 
-![](./img/03.png)
+![](Back-End-Study/DA-study/data-preprocessing/220629/img/03.png)
 
 ### 1. 과정 설명
 
@@ -79,21 +79,21 @@ class BR(models.Model):
 
 ### 3. 코드 설명
 
-[csv05_to_db.py](3+5/csv05_to_db.py )  5번 파일에서 데이터를 받아 django 모델 **(BR)**에 담는 작업
+[csv05_to_db.py](csv05_to_db.py )  5번 파일에서 데이터를 받아 django 모델 **(BR)**에 담는 작업
 
-[csv03_to_db.py](3+5/csv03_to_db.py  )  3번 + 5번 데이터 합치는 작업
+[csv03_to_db.py](csv03_to_db.py  )  3번 + 5번 데이터 합치는 작업
 
-[db_to_csv.py ](3+5/db_to_csv.py ) 완성한 db를 csv 로 내보내는 작업
+[db_to_csv.py](db_to_csv.py ) 완성한 db를 csv 로 내보내는 작업
 
-## 결과물 [파일](3+5/db_to_csv_v2.csv)
+## 결과물 [파일](db_to_csv_v2.csv)
 
-![](./img/04.png)
+![](Back-End-Study/DA-study/data-preprocessing/220629/img/04.png)
 
 캡쳐 뜨다가 발견한 실수 !!!!!
 
-![](./img/05.png)
+![](Back-End-Study/DA-study/data-preprocessing/220629/img/05.png)
 
-[csv03_to_db.py](3+5/csv03_to_db.py  )  에서 예외처리할 때 br_c 값은 생각 안하고 그냥 db에 넣어서 공란이 생겨버렸다 ..
+[csv03_to_db.py](csv03_to_db.py  )  에서 예외처리할 때 br_c 값은 생각 안하고 그냥 db에 넣어서 공란이 생겨버렸다 ..
 
 다음에는 정신차리고 코드 짜기ㅠㅠ
 
