@@ -5,7 +5,7 @@
 
 
 ### 2. 전처리
-[220120](./data-preproccesing) : 데이터 전처리 - 결측치 메우기 공부
+[220120](data-preproccesing) : 데이터 전처리 - 결측치 메우기 공부
 
 [220623](data-preproccesing/220623) : excel + python으로 데이터 전처리하여 api구성
 
