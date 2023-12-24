@@ -5,7 +5,7 @@
 
 |no|이름&nbsp;&nbsp;&nbsp;|설명|
 |----|---|---|
-|1|[Django-CRUD](./Django-CRUD)|django로 게시판을 만들며 CRUD를 학습하였습니다. |
+|1|[Django-CRUD](./Django-CRUD)&nbsp;&nbsp;&nbsp;&nbsp;|django로 게시판을 만들며 CRUD를 학습하였습니다. |
 |2|[DRF](./DRF)|django의 rest api 프레임워크를 학습하였습니다. |
 |3|[SQL](./SQL)|sql의 기본 문법과  django ORM 기초를 학습하였습니다. |
 |4|[mysns-project](./mysns-project)|django 백엔드를 사용한 sns 구현 프로젝트입니다. |
