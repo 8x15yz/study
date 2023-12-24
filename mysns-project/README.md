@@ -4,7 +4,7 @@
 
 사용한 웹 프레임워크 : `Django` 
 
-
+### [🎬시연영상](https://youtu.be/pz-iS8NrZRY?si=8y9DxY2_8ZbN5yyh)
 <br>
 
 
