@@ -3,7 +3,7 @@
 - 파이썬에서 사용할 수 있는 다양한 툴들을 공부하며 기록한 저장소입니다. 
 
 
-|순번|이름|설명|
+|순번&nbsp;&nbsp;|이름&nbsp;&nbsp;&nbsp;|설명|
 |----|---|---|
 |1|[Django-CRUD](./Django-CRUD)|django로 게시판을 만들며 CRUD를 학습하였습니다. |
 |2|[DRF](./DRF)|django의 rest api 프레임워크를 학습하였습니다. |
